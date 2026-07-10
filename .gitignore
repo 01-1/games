@@ -1,0 +1,7 @@
+# Every top-level directory is an independent game repository.
+/*/
+!/server/
+
+# Local workspace configuration and secrets.
+.env
+.env.*

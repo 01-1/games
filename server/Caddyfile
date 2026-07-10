@@ -1,0 +1,9 @@
+{
+	# Optional global Caddy settings belong here.
+}
+
+{$GAMES_SITE:localhost} {
+	import games.routes.caddy
+	# No base-prefix page or catch-all content is served.
+	respond 404
+}

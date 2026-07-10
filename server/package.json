@@ -1,0 +1,10 @@
+{
+  "name": "games-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/start.mjs",
+    "check": "node --check scripts/build.mjs && node --check scripts/start.mjs && node --test tests/*.test.mjs"
+  }
+}

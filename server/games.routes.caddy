@@ -1,0 +1,68 @@
+encode zstd gzip
+
+@alignment_root path {$GAMES_PREFIX}/alignment-interview-sleeper
+redir @alignment_root {$GAMES_PREFIX}/alignment-interview-sleeper/ 308
+handle_path {$GAMES_PREFIX}/alignment-interview-sleeper/* {
+	root * {$GAMES_ROOT}/alignment-interview-sleeper
+	file_server {
+		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
+	}
+}
+
+@checkpoint_root path {$GAMES_PREFIX}/checkpoint
+redir @checkpoint_root {$GAMES_PREFIX}/checkpoint/ 308
+handle_path {$GAMES_PREFIX}/checkpoint/* {
+	root * {$GAMES_ROOT}/checkpoint
+	file_server {
+		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
+	}
+}
+
+@inverse_root path {$GAMES_PREFIX}/inverse
+redir @inverse_root {$GAMES_PREFIX}/inverse/ 308
+handle_path {$GAMES_PREFIX}/inverse/* {
+	root * {$GAMES_ROOT}/inverse/dist
+	try_files {path} /index.html
+	file_server
+}
+
+@money_game_root path {$GAMES_PREFIX}/money-game
+redir @money_game_root {$GAMES_PREFIX}/money-game/ 308
+handle_path {$GAMES_PREFIX}/money-game/* {
+	root * {$GAMES_ROOT}/money-game
+	file_server {
+		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
+	}
+}
+
+@scratchpad_root path {$GAMES_PREFIX}/scratchpad
+redir @scratchpad_root {$GAMES_PREFIX}/scratchpad/ 308
+handle_path {$GAMES_PREFIX}/scratchpad/* {
+	reverse_proxy 127.0.0.1:{$SCRATCHPAD_PORT:7410}
+}
+
+@colluders_root path {$GAMES_PREFIX}/the-colluders
+redir @colluders_root {$GAMES_PREFIX}/the-colluders/ 308
+handle_path {$GAMES_PREFIX}/the-colluders/* {
+	reverse_proxy 127.0.0.1:{$COLLUDERS_PORT:7411}
+}
+
+@debate_root path {$GAMES_PREFIX}/the-debate
+redir @debate_root {$GAMES_PREFIX}/the-debate/ 308
+handle_path {$GAMES_PREFIX}/the-debate/* {
+	reverse_proxy 127.0.0.1:{$DEBATE_PORT:7412}
+}
+
+@turnover_root path {$GAMES_PREFIX}/turnover
+redir @turnover_root {$GAMES_PREFIX}/turnover/ 308
+handle_path {$GAMES_PREFIX}/turnover/* {
+	reverse_proxy 127.0.0.1:{$TURNOVER_PORT:7413}
+}
+
+@weak_supervisor_root path {$GAMES_PREFIX}/weak-supervisor
+redir @weak_supervisor_root {$GAMES_PREFIX}/weak-supervisor/ 308
+handle_path {$GAMES_PREFIX}/weak-supervisor/* {
+	root * {$GAMES_ROOT}/weak-supervisor/dist
+	try_files {path} /index.html
+	file_server
+}
