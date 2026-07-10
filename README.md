@@ -14,7 +14,8 @@ npm start
 
 Caddy configuration and deployment examples live in `server/README.md`.
 
-`games.tsv` lists repositories managed by the workspace. Run:
+`games.tsv` lists repositories managed by the workspace. Its optional fourth
+column records a public game slug. Run:
 
 ```sh
 ./sync-games.sh
@@ -24,6 +25,5 @@ Missing games are cloned. Existing games are fetched and fast-forwarded to the
 latest commit on their configured branch. The script stops rather than changing
 an unexpected remote or creating a merge commit.
 
-`money-game` and `still-there` currently have no
-`origin`, so they are local-only and are not listed in the manifest. Add them to
-`games.tsv` after configuring their remotes.
+`still-there` currently has no `origin`, so it is local-only and is not listed
+in the manifest. Add it to `games.tsv` after configuring its remote.

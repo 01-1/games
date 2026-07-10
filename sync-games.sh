@@ -10,7 +10,7 @@ if [ ! -f "$manifest" ]; then
 fi
 
 tab=$(printf '\t')
-while IFS="$tab" read -r directory repository branch; do
+while IFS="$tab" read -r directory repository branch slug; do
   case "$directory" in
     ''|'#'*) continue ;;
     *[!A-Za-z0-9._-]*|.|..) echo "Invalid directory in games.tsv: $directory" >&2; exit 1 ;;
@@ -18,6 +18,11 @@ while IFS="$tab" read -r directory repository branch; do
 
   if [ -z "$repository" ] || [ -z "$branch" ]; then
     echo "Incomplete entry in games.tsv: $directory" >&2
+    exit 1
+  fi
+
+  if [ -n "$slug" ] && printf '%s' "$slug" | grep -q '[^A-Za-z0-9._-]'; then
+    echo "Invalid slug in games.tsv: $slug" >&2
     exit 1
   fi
 
