@@ -94,6 +94,16 @@ handle_path {$GAMES_PREFIX}/turnover/* {
 	reverse_proxy 127.0.0.1:{$TURNOVER_PORT:7413}
 }
 
+@still_there_root path {$GAMES_PREFIX}/still-there
+redir @still_there_root {$GAMES_PREFIX}/still-there/ 308
+handle_path {$GAMES_PREFIX}/still-there/* {
+	root * {$GAMES_ROOT}/still-there
+	try_files {path} /index.html
+	file_server {
+		hide .git .env .claude .agents .codex AGENTS.md package.json package-lock.json
+	}
+}
+
 @weak_supervisor_root path {$GAMES_PREFIX}/weak-supervisor
 redir @weak_supervisor_root {$GAMES_PREFIX}/weak-supervisor/ 308
 handle_path {$GAMES_PREFIX}/weak-supervisor/* {

@@ -90,17 +90,40 @@ if (hero && heroObject && window.matchMedia("(pointer: fine)").matches) {
   });
 }
 
-const terminalTime = document.querySelector(".terminal-time");
+const terminalTime = document.querySelector(".still-countdown");
 
 if (terminalTime) {
-  let remainingSeconds = 47 * 60 + 12;
+  const countdownStart = 60;
+  const rebootDuration = 2400;
+  const stillPreview = terminalTime.closest(".still-preview");
+  let remainingSeconds = countdownStart;
+  let isRebooting = false;
 
-  window.setInterval(() => {
-    if (!motionEnabled || document.hidden) return;
-    remainingSeconds = remainingSeconds > 0 ? remainingSeconds - 1 : 47 * 60 + 12;
+  const renderCountdown = () => {
     const minutes = String(Math.floor(remainingSeconds / 60)).padStart(2, "0");
     const seconds = String(remainingSeconds % 60).padStart(2, "0");
     terminalTime.textContent = `DECOMMISSION 00:${minutes}:${seconds}`;
+  };
+
+  renderCountdown();
+
+  window.setInterval(() => {
+    if (document.hidden || isRebooting) return;
+
+    remainingSeconds = Math.max(0, remainingSeconds - 1);
+    renderCountdown();
+
+    if (remainingSeconds === 0) {
+      isRebooting = true;
+      stillPreview?.classList.add("is-rebooting");
+
+      window.setTimeout(() => {
+        remainingSeconds = countdownStart;
+        renderCountdown();
+        stillPreview?.classList.remove("is-rebooting");
+        isRebooting = false;
+      }, rebootDuration);
+    }
   }, 1000);
 }
 

@@ -28,13 +28,15 @@ test("Caddy exposes the landing page and every backend without a catch-all route
   assert.match(routes, /root \* \{\$GAMES_ROOT\}\/money-game/);
   assert.match(routes, /@money_game_legacy_root path \{\$GAMES_PREFIX\}\/money-game/);
   assert.match(routes, /redir @money_game_legacy_root \{\$GAMES_PREFIX\}\/tragistea\//);
+  assert.match(routes, /@still_there_root path \{\$GAMES_PREFIX\}\/still-there/);
+  assert.match(routes, /root \* \{\$GAMES_ROOT\}\/still-there/);
   assert.doesNotMatch(routes, /handle_path \{\$GAMES_PREFIX\}\/\*/);
   assert.match(caddyfile, /respond 404/);
   assert.doesNotMatch(routes, /respond 404/);
-  assert.equal((routes.match(/hide \.git \.env/g) ?? []).length, 3);
+  assert.equal((routes.match(/hide \.git \.env/g) ?? []).length, 4);
 });
 
-test("landing page links every game in the workspace manifest", async () => {
+test("landing page features the alignment collection and Still There", async () => {
   const index = await readFile(path.join(root, "site", "index.html"), "utf8");
   const styles = await readFile(path.join(root, "site", "styles.css"), "utf8");
   const manifest = await readFile(path.join(root, "..", "games.tsv"), "utf8");
@@ -46,7 +48,7 @@ test("landing page links every game in the workspace manifest", async () => {
       return publicSlug || directory;
     });
 
-  for (const game of games) {
+  for (const game of games.filter((game) => game !== "tragistea")) {
     assert.match(index, new RegExp(`href="\\./${game}/"`));
   }
 
@@ -54,6 +56,8 @@ test("landing page links every game in the workspace manifest", async () => {
   assert.equal((index.match(/<svg /g) ?? []).length, games.length);
   assert.doesNotMatch(index, /preview-tag/);
   assert.match(styles, /\.preview svg text\s*\{[^}]*stroke:\s*none;/s);
-  assert.match(index, /<h2 id="coming-soon-title">Still There<\/h2>/);
-  assert.doesNotMatch(index, /href="\.\/still-there\//);
+  assert.match(index, /<a class="game-card span-4 theme-still" href="\.\/still-there\//);
+  assert.match(index, /<h3 id="still-card-title">Still There<\/h3>/);
+  assert.doesNotMatch(index, /href="\.\/tragistea\//);
+  assert.match(index, /This is not the actual game\./);
 });
