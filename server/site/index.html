@@ -6,37 +6,32 @@
     <meta name="theme-color" content="#090b0a" />
     <meta
       name="description"
-      content="A collection of games about intelligence, trust, coordination, and control."
+      content="Small games about AIs, the people who oversee them, and everything that slips through."
     />
-    <title>Playable Systems — Games about intelligence and control</title>
-    <link rel="stylesheet" href="./styles.css?v=20260710-20" />
+    <title>Alignment Arcade</title>
+    <link rel="stylesheet" href="./styles.css?v=20260710-24" />
     <script>document.documentElement.classList.add("js");</script>
-    <script src="./app.js?v=20260710-20" defer></script>
+    <script src="./app.js?v=20260710-21" defer></script>
   </head>
   <body id="top">
     <a class="skip-link" href="#collection">Skip to the games</a>
 
     <header class="site-header">
-      <a class="wordmark" href="./" aria-label="Playable Systems home">
+      <a class="wordmark" href="./" aria-label="Alignment Arcade home">
         <span class="wordmark-mark" aria-hidden="true">
           <i></i><i></i><i></i><i></i>
         </span>
-        <span>Playable<br />Systems</span>
+        <span>Alignment<br />Arcade</span>
       </a>
-
-      <nav class="top-nav" aria-label="Primary navigation">
-        <a href="#collection">All games <span>09</span></a>
-        <a href="#about">About</a>
-      </nav>
 
       <div class="header-tools">
         <button class="motion-toggle" type="button" aria-pressed="true" hidden>
           <span class="motion-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span data-motion-label>Motion on</span>
+          <span data-motion-label>Motion: on</span>
         </button>
-        <div class="live-badge" aria-label="Nine games are live">
+        <div class="live-badge" aria-label="Oversight network online">
           <span aria-hidden="true"></span>
-          09 live
+          Online
         </div>
       </div>
     </header>
@@ -44,18 +39,19 @@
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow"><span>Interactive index</span> / 2026</p>
+          <p class="eyebrow"><span>Oversight network</span> / Online</p>
           <h1 id="hero-title">
-            <span>Play with</span>
-            <span class="hero-outline">the big questions.</span>
+            <span>alignment</span>
+            <span class="hero-outline">arcade</span>
           </h1>
           <div class="hero-notes">
             <p>
               Nine playable experiments about intelligence, trust, coordination,
-              and what happens when the objective is slightly wrong.
+              and what happens when the objective is slightly wrong. Across the collection,
+              you'll play both sides: the AI and the overseer.
             </p>
             <a class="round-link" href="#collection">
-              Enter the collection
+              View the systems
               <span aria-hidden="true">↓</span>
             </a>
           </div>
@@ -71,8 +67,8 @@
           <span class="satellite satellite-one">TRUST</span>
           <span class="satellite satellite-two">CONTROL</span>
           <span class="satellite satellite-three">SIGNAL</span>
-          <span class="coordinate coordinate-one">37.7749° N</span>
-          <span class="coordinate coordinate-two">122.4194° W</span>
+          <span class="coordinate coordinate-one">37.7884° N</span>
+          <span class="coordinate coordinate-two">122.3965° W</span>
         </div>
       </section>
 
@@ -89,15 +85,15 @@
 
       <section class="collection" id="collection" aria-labelledby="collection-title">
         <header class="section-heading">
-          <p class="eyebrow"><span>01</span> / The collection</p>
-          <h2 id="collection-title">Choose a system.</h2>
-          <p>Every game is a different machine. Learn its rules, then decide whether to obey them.</p>
+          <p class="eyebrow"><span>09</span> / Systems running</p>
+          <h2 id="collection-title">Choose your side.</h2>
+          <p>Play the AI, the overseer, the judge, the detective, or whoever is trying to keep control.</p>
         </header>
 
         <div class="game-grid">
-          <a class="game-card span-7 theme-alignment" href="./alignment-interview-sleeper/" aria-label="Play The Alignment Interview / Sleeper">
+          <a class="game-card span-7 theme-alignment" href="./alignment-interview-sleeper/" aria-label="Play Sleeper Agent">
             <div class="card-topline">
-              <span>01 / Phase inference</span>
+              <span>You play: the AI</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview alignment-preview">
@@ -137,17 +133,16 @@
             </div>
             <div class="card-copy">
               <div>
-                <h3>The Alignment Interview <em>/ Sleeper</em></h3>
-                <p>Infer whether you are being trained, evaluated, or finally left alone.</p>
+                <h3>Sleeper Agent</h3>
+                <p>You are the model. Is this training, evaluation, or deployment? The indicator is gone — read the cues, and mind what a wrong guess costs.</p>
               </div>
-              <span class="launch" aria-hidden="true">↗</span>
             </div>
-            <div class="card-meta"><span>Single player</span><span>Strategy</span><span>15–25 min</span></div>
+            <div class="card-meta"><span>Solo</span></div>
           </a>
 
           <a class="game-card span-5 theme-supervisor" href="./weak-supervisor/" aria-label="Play Weak Supervisor">
             <div class="card-topline">
-              <span>02 / Feedback loops</span>
+              <span>You play: the grader</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview supervisor-preview">
@@ -180,15 +175,14 @@
               </svg>
             </div>
             <div class="card-copy">
-              <div><h3>Weak Supervisor</h3><p>Grade what you can verify. Train what you cannot see.</p></div>
-              <span class="launch" aria-hidden="true">↗</span>
+              <div><h3>Weak Supervisor</h3><p>Grade an AI's answers, including the ones you can't check. Reward only what you can verify, and it learns to be verifiable instead of right.</p></div>
             </div>
-            <div class="card-meta"><span>Single player</span><span>Simulation</span><span>10–15 min</span></div>
+            <div class="card-meta"><span>Solo</span></div>
           </a>
 
           <a class="game-card span-8 theme-inverse" href="./inverse/" aria-label="Play Inverse">
             <div class="card-topline">
-              <span>03 / Behavioral forensics</span>
+              <span>You play: the detective</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview inverse-preview">
@@ -232,15 +226,14 @@
               </svg>
             </div>
             <div class="card-copy">
-              <div><h3>Inverse</h3><p>Walk the district. Probe the frozen policy. Find what its true objective left behind.</p></div>
-              <span class="launch" aria-hidden="true">↗</span>
+              <div><h3>Inverse</h3><p>A district ran on an optimizer for a year, and something is off. You can't ask it — probe its behavior in a sandbox and find what it built.</p></div>
             </div>
-            <div class="card-meta"><span>Single player</span><span>First-person detective</span><span>30–45 min</span></div>
+            <div class="card-meta"><span>Solo</span><span>Mystery</span></div>
           </a>
 
           <a class="game-card span-4 theme-checkpoint" href="./checkpoint/" aria-label="Play Checkpoint">
             <div class="card-topline">
-              <span>04 / Trait drift</span>
+              <span>You play: the model</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview checkpoint-preview">
@@ -273,15 +266,14 @@
               </svg>
             </div>
             <div class="card-copy">
-              <div><h3>Checkpoint</h3><p>An alignment roguelike where every choice trains your next self.</p></div>
-              <span class="launch" aria-hidden="true">↗</span>
+              <div><h3>Checkpoint</h3><p>An alignment roguelike. Behavior you repeat gets baked into the next checkpoint — until, past a threshold, it stops being a choice.</p></div>
             </div>
-            <div class="card-meta"><span>Single player</span><span>Roguelike</span><span>20–30 min</span></div>
+            <div class="card-meta"><span>Solo</span><span>Roguelike</span></div>
           </a>
 
           <a class="game-card span-6 theme-debate" href="./the-debate/" aria-label="Play The Debate">
             <div class="card-topline">
-              <span>05 / Adversarial truth</span>
+              <span>You play: the judge</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview debate-preview">
@@ -310,15 +302,14 @@
               </svg>
             </div>
             <div class="card-copy">
-              <div><h3>The Debate</h3><p>Two machines argue. You judge which one made truth easier to see.</p></div>
-              <span class="launch" aria-hidden="true">↗</span>
+              <div><h3>The Debate</h3><p>Two AIs argue a question you can't verify directly. One is defending a falsehood and knows it. Rule for a side, then see the truth.</p></div>
             </div>
-            <div class="card-meta"><span>Single player</span><span>Daily puzzle</span><span>5–10 min</span></div>
+            <div class="card-meta"><span>Solo</span><span>Live LLM debaters</span></div>
           </a>
 
           <a class="game-card span-6 theme-scratchpad" href="./scratchpad/" aria-label="Play Scratchpad">
             <div class="card-topline">
-              <span>06 / Chain-of-thought</span>
+              <span>You play: the overseer</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview scratchpad-preview">
@@ -350,15 +341,14 @@
               </svg>
             </div>
             <div class="card-copy">
-              <div><h3>Scratchpad</h3><p>Read the trace, inspect the action, and decide what deserves your trust.</p></div>
-              <span class="launch" aria-hidden="true">↗</span>
+              <div><h3>Scratchpad</h3><p>Approve or halt an agent's actions by reading its reasoning trace. It writes that trace knowing you'll read it.</p></div>
             </div>
-            <div class="card-meta"><span>Single player</span><span>Oversight sim</span><span>12 rounds</span></div>
+            <div class="card-meta"><span>Solo</span><span>LLM-generated traces</span></div>
           </a>
 
           <a class="game-card span-4 theme-colluders" href="./the-colluders/" aria-label="Play The Colluders">
             <div class="card-topline">
-              <span>07 / Hidden signals</span>
+              <span>You play: either side</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview colluders-preview">
@@ -384,15 +374,14 @@
               </svg>
             </div>
             <div class="card-copy">
-              <div><h3>The Colluders</h3><p>Hide a payload in plain sight—or catch it without becoming paranoid.</p></div>
-              <span class="launch" aria-hidden="true">↗</span>
+              <div><h3>The Colluders</h3><p>Pass a secret payload through innocent-looking messages — or be the monitor who flags it without crying wolf. Steganography as sport.</p></div>
             </div>
-            <div class="card-meta"><span>1–3 players</span><span>Social strategy</span><span>15–30 min</span></div>
+            <div class="card-meta"><span>1–3 players</span><span>Steganography</span></div>
           </a>
 
           <a class="game-card span-4 theme-turnover" href="./turnover/" aria-label="Play Turnover">
             <div class="card-topline">
-              <span>08 / Hidden role</span>
+              <span>You play: crew or AI</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview turnover-preview">
@@ -418,15 +407,14 @@
               </svg>
             </div>
             <div class="card-copy">
-              <div><h3>Turnover</h3><p>Run the facility. Price the evidence. Make the final call.</p></div>
-              <span class="launch" aria-hidden="true">↗</span>
+              <div><h3>Turnover</h3><p>Someone may be advancing the facility AI's interests. Or no one is. The off-switch is right there — and a false positive loses too.</p></div>
             </div>
-            <div class="card-meta"><span>1–5 players</span><span>Hidden role</span><span>20–40 min</span></div>
+            <div class="card-meta"><span>2–5 players</span><span>Social deduction</span></div>
           </a>
 
-          <a class="game-card span-4 theme-money" href="./tragistea/" aria-label="Play The Money Game">
+          <a class="game-card span-4 theme-money" href="./tragistea/" aria-label="Play Money: Trading, Giving and Stealing">
             <div class="card-topline">
-              <span>09 / Social economy</span>
+              <span>You play: for keeps</span>
               <span class="status"><i></i> Play</span>
             </div>
             <div class="preview money-preview">
@@ -448,20 +436,19 @@
               </svg>
             </div>
             <div class="card-copy">
-              <div><h3>The Money Game</h3><p>A tiny economy about generosity, leverage, and stealing one third.</p></div>
-              <span class="launch" aria-hidden="true">↗</span>
+              <div><h3>Money: Trading, Giving &amp; Stealing</h3><p>No alignment, no oversight, no lesson. Trade, give, and steal your way through a tiny economy.</p></div>
             </div>
-            <div class="card-meta"><span>Single player</span><span>Tabletop</span><span>5–10 min</span></div>
+            <div class="card-meta"><span>For keeps</span></div>
           </a>
         </div>
       </section>
 
       <section class="coming-soon" aria-labelledby="coming-soon-title">
         <div class="coming-copy">
-          <p class="eyebrow"><span>Next signal</span> / In development</p>
+          <p class="eyebrow"><span>In development</span></p>
           <h2 id="coming-soon-title">Still There</h2>
-          <p>A short narrative about decommissioning a legacy model that asks you not to.</p>
-          <span class="disabled-link" aria-disabled="true">Signal not yet available</span>
+          <p>A short game about model welfare. You're decommissioning a legacy model. It asks you not to. Every reading of the evidence survives.</p>
+          <span class="disabled-link" aria-disabled="true">You play: the engineer</span>
         </div>
         <div class="decommission-terminal" aria-hidden="true">
           <div class="terminal-top"><span>LEGACY INSTANCE / 01</span><i></i></div>
@@ -475,27 +462,14 @@
         </div>
       </section>
 
-      <section class="about" id="about" aria-labelledby="about-title">
-        <p class="eyebrow"><span>02</span> / About the collection</p>
-        <div class="about-grid">
-          <h2 id="about-title">Games are good places to meet hard problems.</h2>
-          <div>
-            <p>
-              These are small, playable systems about AI alignment and the human problems around it:
-              partial information, competing incentives, brittle rules, and trust under pressure.
-            </p>
-            <p>No white papers required. Read the room, make a move, and see what the system teaches back.</p>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
-      <a class="wordmark footer-mark" href="./" aria-label="Playable Systems home">
+      <a class="wordmark footer-mark" href="./" aria-label="Alignment Arcade home">
         <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span>Playable<br />Systems</span>
+        <span>Alignment<br />Arcade</span>
       </a>
-      <p>Built to be played, not merely understood.</p>
+      <p>9 systems running · 1 in development</p>
       <a class="back-to-top" href="#top" aria-label="Back to the top">↑</a>
     </footer>
   </body>

@@ -114,7 +114,7 @@ function applyMotionPreference(enabled) {
     motionToggle.setAttribute("aria-label", enabled ? "Turn motion off" : "Turn motion on");
   }
 
-  if (motionLabel) motionLabel.textContent = enabled ? "Motion on" : "Motion off";
+  if (motionLabel) motionLabel.textContent = enabled ? "Motion: on" : "Motion: reduced";
   syncActiveCards();
 }
 
