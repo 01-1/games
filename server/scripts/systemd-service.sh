@@ -41,8 +41,12 @@ validate_settings() {
   [[ "$service_name" =~ ^[A-Za-z0-9_.@-]+$ ]] || fail "invalid SERVICE_NAME: $service_name"
   [[ "$service_user" =~ ^[A-Za-z_][A-Za-z0-9_.-]*\$?$ ]] || fail "invalid SERVICE_USER: $service_user"
   id "$service_user" >/dev/null 2>&1 || fail "SERVICE_USER does not exist: $service_user"
+  [[ "$workspace_dir" == /* ]] || fail "workspace path must be absolute: $workspace_dir"
+  [[ ! "$workspace_dir" =~ [[:space:]\"\\] ]] || fail "workspace path cannot contain whitespace, quotes, or backslashes: $workspace_dir"
   [[ -n "$npm_bin" && -x "$npm_bin" ]] || fail "npm was not found; set NPM_BIN to its absolute path"
   [[ -n "$node_bin" && -x "$node_bin" ]] || fail "node was not found; set NODE_BIN to its absolute path"
+  [[ "$npm_bin" == /* && ! "$npm_bin" =~ [[:space:]\"\\] ]] || fail "NPM_BIN must be an absolute path without whitespace, quotes, or backslashes"
+  [[ "$node_bin" == /* && ! "$node_bin" =~ [[:space:]\"\\] ]] || fail "NODE_BIN must be an absolute path without whitespace, quotes, or backslashes"
 }
 
 escape_unit_value() {
@@ -70,10 +74,10 @@ After=network-online.target
 [Service]
 Type=simple
 User=$service_user
-WorkingDirectory="$escaped_workspace"
+WorkingDirectory=$escaped_workspace
 Environment=NODE_ENV=production
-Environment="PATH=$escaped_path"
-ExecStart="$escaped_node" "$escaped_script"
+Environment=PATH=$escaped_path
+ExecStart=$escaped_node $escaped_script
 Restart=on-failure
 RestartSec=5
 TimeoutStopSec=15
