@@ -10,6 +10,7 @@ npm_bin="${NPM_BIN:-$(command -v npm || true)}"
 node_bin="${NODE_BIN:-$(command -v node || true)}"
 unit_dir="${SYSTEMD_UNIT_DIR:-/etc/systemd/system}"
 unit_path="$unit_dir/$service_name.service"
+temporary_unit=""
 
 fail() {
   echo "error: $*" >&2
@@ -21,6 +22,13 @@ run_root() {
     "$@"
   else
     sudo "$@"
+  fi
+}
+
+cleanup() {
+  if [[ -n "${temporary_unit:-}" ]]; then
+    rm -f -- "$temporary_unit"
+    temporary_unit=""
   fi
 }
 
@@ -38,12 +46,14 @@ escape_unit_value() {
 
 render_unit() {
   validate_settings
-  local npm_dir node_dir service_path escaped_workspace escaped_npm escaped_path
+  local npm_dir node_dir service_path start_script escaped_workspace escaped_node escaped_script escaped_path
   npm_dir="$(dirname -- "$npm_bin")"
   node_dir="$(dirname -- "$node_bin")"
   service_path="$npm_dir:$node_dir:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  start_script="$workspace_dir/server/scripts/start.mjs"
   escaped_workspace="$(escape_unit_value "$workspace_dir")"
-  escaped_npm="$(escape_unit_value "$npm_bin")"
+  escaped_node="$(escape_unit_value "$node_bin")"
+  escaped_script="$(escape_unit_value "$start_script")"
   escaped_path="$(escape_unit_value "$service_path")"
 
   cat <<EOF
@@ -58,7 +68,7 @@ User=$service_user
 WorkingDirectory="$escaped_workspace"
 Environment=NODE_ENV=production
 Environment="PATH=$escaped_path"
-ExecStart="$escaped_npm" start
+ExecStart="$escaped_node" "$escaped_script"
 Restart=on-failure
 RestartSec=5
 TimeoutStopSec=15
@@ -70,16 +80,25 @@ EOF
 }
 
 install_service() {
-  local temporary_unit
   temporary_unit="$(mktemp)"
-  trap 'rm -f -- "$temporary_unit"' EXIT
+  trap cleanup EXIT
   render_unit >"$temporary_unit"
+
+  if command -v systemd-analyze >/dev/null 2>&1; then
+    systemd-analyze verify "$temporary_unit"
+  fi
 
   run_root install -d -m 0755 "$unit_dir"
   run_root install -m 0644 "$temporary_unit" "$unit_path"
   run_root systemctl daemon-reload
-  run_root systemctl enable --now "$service_name.service"
+  if ! run_root systemctl enable --now "$service_name.service"; then
+    run_root systemctl --no-pager --full status "$service_name.service" || true
+    run_root journalctl --no-pager -u "$service_name.service" -n 50 || true
+    fail "failed to start $service_name.service"
+  fi
   run_root systemctl --no-pager --full status "$service_name.service"
+  cleanup
+  trap - EXIT
 }
 
 uninstall_service() {

@@ -6,6 +6,6 @@
     "build": "node scripts/build.mjs",
     "start": "node scripts/start.mjs",
     "models:refresh": "node scripts/refresh-models.mjs",
-    "check": "node --check scripts/build.mjs && node --check scripts/start.mjs && node --check scripts/refresh-models.mjs && node --check lib/openrouter-models.mjs && node --test tests/*.test.mjs"
+    "check": "node --check scripts/build.mjs && node --check scripts/start.mjs && node --check scripts/refresh-models.mjs && node --check lib/openrouter-models.mjs && bash -n scripts/systemd-service.sh && node --test tests/*.test.mjs"
   }
 }
