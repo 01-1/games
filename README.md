@@ -11,6 +11,8 @@ interpretability, collusion, hidden objectives, trait drift, and shutdown
 decisions. They turn those ideas into choices under uncertainty, where evidence
 is limited, incentives matter, and the overseer can be wrong too.
 
+Play the collection at [games.meowc.at](https://games.meowc.at/).
+
 ## Repository
 
 Each top-level game directory is an independent Git repository with its own
@@ -54,7 +56,39 @@ npm run models:refresh
 There is intentionally no HTTP refresh endpoint. Browsers can select from the
 published allowlist but cannot mutate or refresh it.
 
-Caddy configuration and deployment examples live in `server/README.md`.
+## Caddy
+
+The reusable Caddy routes take two import arguments:
+
+1. The public URL prefix, such as `/games`.
+2. The absolute path to this workspace on the host.
+
+To mount the arcade beneath an existing site:
+
+```caddyfile
+example.com {
+    # Existing site directives can remain here.
+    import /path/to/alignment-arcade/server/games.routes.caddy /games /path/to/alignment-arcade
+}
+```
+
+This serves the index at `https://example.com/games/` and each game beneath its
+slug. To use a dedicated subdomain with no path prefix, pass an empty quoted
+first argument:
+
+```caddyfile
+games.example.com {
+    import /path/to/alignment-arcade/server/games.routes.caddy "" /path/to/alignment-arcade
+}
+```
+
+No Caddy environment variables are required. The imported routes do not include
+a catch-all, so unrelated routes in an existing site block remain available.
+The server-backed games are proxied to the fixed loopback ports `7410` through
+`7413`; keep `npm start` running alongside Caddy.
+
+The standalone `server/Caddyfile` provides a local `/games` configuration. More
+details and the complete route list are in `server/README.md`.
 
 `games.tsv` lists repositories managed by the workspace. Its optional fourth
 column records a public game slug. Run:
