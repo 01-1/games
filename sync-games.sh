@@ -9,6 +9,27 @@ if [ ! -f "$manifest" ]; then
   exit 1
 fi
 
+if ! git -C "$root" rev-parse --git-dir >/dev/null 2>&1; then
+  echo "Workspace root is not a Git repository: $root" >&2
+  exit 1
+fi
+
+root_repository=$(git -C "$root" remote get-url origin 2>/dev/null || true)
+case "$root_repository" in
+  git@github.com:01-1/games.git|https://github.com/01-1/games.git) ;;
+  *)
+    echo "Origin mismatch for workspace root" >&2
+    echo "  expected: git@github.com:01-1/games.git or https://github.com/01-1/games.git" >&2
+    echo "  existing: $root_repository" >&2
+    exit 1
+    ;;
+esac
+
+echo "Updating workspace root (main)"
+git -C "$root" fetch origin main
+git -C "$root" checkout main
+git -C "$root" merge --ff-only origin/main
+
 tab=$(printf '\t')
 while IFS="$tab" read -r directory repository branch slug; do
   case "$directory" in

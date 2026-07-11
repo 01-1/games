@@ -1,0 +1,8 @@
+{
+  "freeModelRefreshIntervalMs": 21600000,
+  "fallbackFreeModels": [
+    "openai/gpt-oss-20b:free"
+  ],
+  "paidModels": [],
+  "defaultModel": "openai/gpt-oss-20b:free"
+}

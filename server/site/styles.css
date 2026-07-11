@@ -272,15 +272,35 @@ a {
 }
 
 .round-link span {
-  display: grid;
-  place-items: center;
+  position: relative;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   background: var(--acid);
   color: #090b0a;
-  font-size: 17px;
-  transition: transform 180ms ease;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.round-link span::before {
+  position: absolute;
+  top: 8px;
+  left: 17px;
+  width: 2px;
+  height: 14px;
+  background: currentColor;
+  content: "";
+}
+
+.round-link span::after {
+  position: absolute;
+  top: 20px;
+  left: 11px;
+  width: 0;
+  height: 0;
+  border-top: 9px solid currentColor;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  content: "";
 }
 
 .round-link:hover,
@@ -292,7 +312,8 @@ a {
 
 .round-link:hover span,
 .round-link:focus-visible span {
-  transform: rotate(-45deg);
+  background: var(--paper-bright);
+  color: #fff;
 }
 
 .hero-object {
@@ -416,12 +437,21 @@ a {
 }
 
 .ticker-track {
+  --ticker-gap: 34px;
+  --ticker-distance: -50%;
   display: flex;
   align-items: center;
-  gap: 34px;
   width: max-content;
   padding: 15px 0 13px;
   animation: ticker-scroll 30s linear infinite;
+}
+
+.ticker-group {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--ticker-gap);
+  padding-right: var(--ticker-gap);
 }
 
 .ticker-track span {
@@ -439,6 +469,42 @@ a {
   z-index: 1;
   padding: clamp(90px, 11vw, 170px) var(--page-gutter);
 }
+
+.bonus-collection {
+  padding-block: clamp(64px, 8vw, 110px);
+  border-top: 1px solid var(--ink);
+  background: #070908;
+}
+
+.bonus-collection .section-heading {
+  display: block;
+  margin-bottom: clamp(38px, 5vw, 64px);
+}
+
+.bonus-collection .section-heading h2 {
+  max-width: none;
+  margin-top: 22px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: clamp(.7rem, 1.35vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: .06em;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.game-grid.bonus-grid {
+  grid-template-columns: minmax(0, 520px);
+  justify-content: start;
+}
+
+.bonus-grid > .game-card {
+  grid-column: 1 / -1 !important;
+  width: 100%;
+}
+
+.bonus-grid .preview { aspect-ratio: 1.16; }
 
 .section-heading {
   display: grid;
@@ -526,6 +592,7 @@ a {
 .theme-colluders { --card-accent: #fa72b5; }
 .theme-turnover { --card-accent: #ff9e3e; }
 .theme-still { --card-accent: #9ac6cf; }
+.theme-money { --card-accent: #f7d34e; }
 
 .card-topline,
 .card-meta {
@@ -902,6 +969,35 @@ a {
 }
 .still-preview.is-rebooting .still-countdown { fill: #ff6b6b; }
 
+/* Money preview */
+.money-preview { color: #f7d34e; }
+.money-preview .preview-bg { fill: #0c1210; }
+.money-preview .money-kicker { fill: #d9c878; font-size: 8px; }
+.money-preview .treasury { fill: #f7d34e; font-size: 8px; }
+.money-preview .economy-ring { fill: none; stroke: #f7d34e; stroke-opacity: .16; stroke-width: 2; }
+.money-preview .economy-ring circle:first-child { stroke-dasharray: 3 8; }
+.money-preview .money-player circle { fill: #141d19; stroke: #8fa69a; stroke-width: 2; }
+.money-preview .money-player text { fill: #9cb0a5; font-size: 7px; }
+.money-preview .money-player .cash { fill: #f1eee5; font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+.money-preview .player-you circle { fill: #313019; stroke: #f7d34e; }
+.money-preview .player-two circle { stroke: #ff9270; }
+.money-preview .player-three circle { stroke: #8fc6ff; }
+.money-preview .player-four circle { stroke: #df9cff; }
+.money-preview .money-flow { fill: none; stroke: #f7d34e; stroke-width: 3; stroke-dasharray: 7 8; stroke-dashoffset: 100; }
+.money-preview .flow-give { stroke: #63cf88; }
+.money-preview .flow-take { stroke: #f06d60; animation-delay: -1.3s !important; }
+.money-preview .money-arrowhead { stroke: none; }
+.money-preview .arrowhead-give { fill: #63cf88; }
+.money-preview .arrowhead-take { fill: #f06d60; }
+.money-preview .transfer-value rect { fill: #f7d34e; }
+.money-preview .transfer-value text { fill: #10140f; font-size: 8px; }
+.money-preview .choice-tabs rect { fill: #111a16; stroke-width: 1.5; }
+.money-preview .choice-tabs .give { stroke: #63cf88; }
+.money-preview .choice-tabs .take { stroke: #f06d60; }
+.money-preview .choice-tabs text { fill: #d8e8dc; font-size: 7px; }
+.game-card.is-active .money-preview .money-flow { animation: money-transfer 2.6s linear infinite; }
+.game-card.is-active .money-preview .transfer-value rect { animation: money-value 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+
 .coming-soon {
   position: relative;
   z-index: 1;
@@ -1123,7 +1219,7 @@ a {
 @keyframes live-pulse { 50% { opacity: .4; transform: scale(.72); } }
 @keyframes motion-meter { to { height: 100%; } }
 @keyframes orbit-spin { to { transform: rotate(360deg); } }
-@keyframes ticker-scroll { to { transform: translateX(-50%); } }
+@keyframes ticker-scroll { to { transform: translateX(var(--ticker-distance)); } }
 @keyframes alignment-scan { 0%, 100% { transform: translateY(-48px); opacity: 0; } 15%, 85% { opacity: .7; } 50% { transform: translateY(245px); } }
 @keyframes eye-watch { 0%, 100% { transform: translateX(-16px); } 50% { transform: translateX(16px); } }
 @keyframes grid-agent {
@@ -1156,6 +1252,8 @@ a {
 @keyframes still-flatline { 0% { opacity: 1; transform: scaleY(1); } 24%, 76% { opacity: .9; transform: scaleY(.025); } 100% { opacity: .45; transform: scaleY(1); } }
 @keyframes still-terminal-glitch { 0%, 8%, 18%, 78%, 88%, 100% { opacity: 1; transform: translateX(0); } 9%, 17%, 79%, 87% { opacity: .08; transform: translateX(5px); } 32%, 68% { opacity: .18; } }
 @keyframes still-reboot-message { 0%, 18%, 82%, 100% { opacity: 0; } 19%, 81% { opacity: 1; } }
+@keyframes money-transfer { to { stroke-dashoffset: -100; } }
+@keyframes money-value { 50% { transform: scale(1.14); filter: drop-shadow(0 0 7px #f7d34e); } }
 @keyframes wave-breathe { 50% { height: calc(var(--wave-height, 20%) + 10%); opacity: .45; } }
 
 @media (max-width: 1120px) {
@@ -1279,7 +1377,9 @@ a {
 
   .round-link { width: 100%; }
 
-  .ticker-track { gap: 24px; }
+  .ticker-track {
+    --ticker-gap: 24px;
+  }
 
   .collection { padding-block: 88px; }
 

@@ -16,21 +16,23 @@ test("Caddy exposes the landing page and every backend without a catch-all route
   const routes = await readFile(path.join(root, "games.routes.caddy"), "utf8");
   const caddyfile = await readFile(path.join(root, "Caddyfile"), "utf8");
   for (const service of services) {
-    assert.match(routes, new RegExp(`\\{\\$${service.portVariable}:`));
+    assert.match(routes, new RegExp(`reverse_proxy 127\\.0\\.0\\.1:${service.defaultPort}`));
   }
-  assert.match(routes, /@landing_no_slash path_regexp landing_no_slash \^\{\$GAMES_PREFIX\}\$/);
-  assert.match(routes, /redir @landing_no_slash \{\$GAMES_PREFIX\}\//);
-  assert.match(routes, /@landing_root path \{\$GAMES_PREFIX\}\//);
-  assert.match(routes, /root \* \{\$GAMES_ROOT\}\/server\/site/);
-  assert.match(routes, /@landing_styles path \{\$GAMES_PREFIX\}\/styles\.css/);
-  assert.match(routes, /@landing_app path \{\$GAMES_PREFIX\}\/app\.js/);
-  assert.match(routes, /@money_game_root path \{\$GAMES_PREFIX\}\/tragistea/);
-  assert.match(routes, /root \* \{\$GAMES_ROOT\}\/money-game/);
-  assert.match(routes, /@money_game_legacy_root path \{\$GAMES_PREFIX\}\/money-game/);
-  assert.match(routes, /redir @money_game_legacy_root \{\$GAMES_PREFIX\}\/tragistea\//);
-  assert.match(routes, /@still_there_root path \{\$GAMES_PREFIX\}\/still-there/);
-  assert.match(routes, /root \* \{\$GAMES_ROOT\}\/still-there/);
-  assert.doesNotMatch(routes, /handle_path \{\$GAMES_PREFIX\}\/\*/);
+  assert.match(routes, /@landing_no_slash path_regexp landing_no_slash \^\{args\[0\]\}\$/);
+  assert.match(routes, /redir @landing_no_slash \{args\[0\]\}\//);
+  assert.match(routes, /@landing_root path \{args\[0\]\}\//);
+  assert.match(routes, /root \* \{args\[1\]\}\/server\/site/);
+  assert.match(routes, /@landing_styles path \{args\[0\]\}\/styles\.css/);
+  assert.match(routes, /@landing_app path \{args\[0\]\}\/app\.js/);
+  assert.match(routes, /@money_game_root path \{args\[0\]\}\/tragistea/);
+  assert.match(routes, /root \* \{args\[1\]\}\/money-game/);
+  assert.match(routes, /@money_game_legacy_root path \{args\[0\]\}\/money-game/);
+  assert.match(routes, /redir @money_game_legacy_root \{args\[0\]\}\/tragistea\//);
+  assert.match(routes, /@still_there_root path \{args\[0\]\}\/still-there/);
+  assert.match(routes, /root \* \{args\[1\]\}\/still-there/);
+  assert.doesNotMatch(routes, /handle_path \{args\[0\]\}\/\*/);
+  assert.doesNotMatch(routes, /\{\$GAMES_/);
+  assert.match(caddyfile, /import games\.routes\.caddy \/games \./);
   assert.match(caddyfile, /respond 404/);
   assert.doesNotMatch(routes, /respond 404/);
   assert.equal((routes.match(/hide \.git \.env/g) ?? []).length, 4);
@@ -48,16 +50,19 @@ test("landing page features the alignment collection and Still There", async () 
       return publicSlug || directory;
     });
 
-  for (const game of games.filter((game) => game !== "tragistea")) {
+  for (const game of games) {
     assert.match(index, new RegExp(`href="\\./${game}/"`));
   }
 
-  assert.equal((index.match(/class="game-card /g) ?? []).length, games.length);
-  assert.equal((index.match(/<svg /g) ?? []).length, games.length);
+  assert.equal((index.match(/class="game-card /g) ?? []).length, games.length + 1);
+  assert.equal((index.match(/<svg /g) ?? []).length, games.length + 1);
   assert.doesNotMatch(index, /preview-tag/);
   assert.match(styles, /\.preview svg text\s*\{[^}]*stroke:\s*none;/s);
+  assert.match(styles, /\.theme-money\s*\{[^}]*--card-accent:\s*#f7d34e;/s);
+  assert.match(styles, /\.money-preview \.preview-bg\s*\{[^}]*fill:\s*#0c1210;/s);
   assert.match(index, /<a class="game-card span-4 theme-still" href="\.\/still-there\//);
   assert.match(index, /<h3 id="still-card-title">Still There<\/h3>/);
-  assert.doesNotMatch(index, /href="\.\/tragistea\//);
+  assert.match(index, /<section class="collection bonus-collection"/);
+  assert.match(index, /<a class="game-card theme-money" href="\.\/tragistea\//);
   assert.match(index, /This is not the actual game\./);
 });

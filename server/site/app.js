@@ -8,6 +8,37 @@ let motionEnabled = savedMotion ? savedMotion === "on" : !prefersReducedMotion.m
 
 applyMotionPreference(motionEnabled);
 
+const tickerTrack = document.querySelector(".ticker-track");
+
+if (tickerTrack) {
+  const tickerGroups = [...tickerTrack.querySelectorAll(".ticker-group")];
+  const sourceItems = tickerGroups[0]
+    ? [...tickerGroups[0].children].map((item) => item.cloneNode(true))
+    : [];
+  let tickerResizeFrame;
+
+  const fillTicker = () => {
+    if (tickerGroups.length !== 2 || sourceItems.length === 0) return;
+
+    for (const group of tickerGroups) {
+      group.replaceChildren(...sourceItems.map((item) => item.cloneNode(true)));
+
+      while (group.scrollWidth < window.innerWidth + 120) {
+        group.append(...sourceItems.map((item) => item.cloneNode(true)));
+      }
+    }
+
+    tickerTrack.style.setProperty("--ticker-distance", `-${tickerGroups[0].getBoundingClientRect().width}px`);
+  };
+
+  fillTicker();
+  document.fonts?.ready.then(fillTicker);
+  window.addEventListener("resize", () => {
+    window.cancelAnimationFrame(tickerResizeFrame);
+    tickerResizeFrame = window.requestAnimationFrame(fillTicker);
+  });
+}
+
 if (motionToggle) {
   motionToggle.hidden = false;
   motionToggle.addEventListener("click", () => {

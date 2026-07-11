@@ -13,43 +13,40 @@ npm start
 ```
 
 `npm start` runs the four server-backed games on loopback. Caddy serves the static
-games and proxies the server-backed games. Start Caddy separately with the supplied
-configuration:
+games and proxies the server-backed games. The supplied standalone configuration
+uses local defaults and requires no environment variables:
 
 ```sh
-GAMES_ROOT=/absolute/path/to/games \
-GAMES_SITE=games.meowc.at \
-GAMES_PREFIX= \
+cd /absolute/path/to/games
 caddy run --config ./server/Caddyfile
 ```
 
-That serves the landing page at `https://games.meowc.at/` and produces game URLs
-such as `https://games.meowc.at/inverse/`.
+That serves the landing page at `https://localhost/games/`. The standalone file
+imports `games.routes.caddy` with two arguments: the public URL prefix and the
+workspace root.
 
-To mount beneath an existing domain instead:
-
-```sh
-GAMES_ROOT=/absolute/path/to/games \
-GAMES_SITE=meowc.at \
-GAMES_PREFIX=/games \
-caddy run --config ./server/Caddyfile
-```
-
-That serves the landing page at `https://meowc.at/games/` and produces game URLs
-such as `https://meowc.at/games/inverse/`. Requests to `/games` redirect to the
-trailing-slash URL so relative site assets resolve beneath the prefix. Keep
-`GAMES_PREFIX` empty or use a leading slash with no trailing slash.
-
-If the domain already has a Caddy site block, import the route file directly:
+To mount beneath an existing domain, import the route file with the values that
+apply on that server:
 
 ```caddyfile
 meowc.at {
     # Existing site directives can remain here.
-    import /absolute/path/to/games/server/games.routes.caddy
+    import /absolute/path/to/games/server/games.routes.caddy /games /absolute/path/to/games
 }
 ```
 
-The same `GAMES_ROOT` and `GAMES_PREFIX` environment variables apply.
+That serves the landing page at `https://meowc.at/games/` and produces game URLs
+such as `https://meowc.at/games/inverse/`. Requests to `/games` redirect to the
+trailing-slash URL so relative site assets resolve beneath the prefix.
+
+For a dedicated games subdomain, pass an empty quoted prefix:
+
+```caddyfile
+games.meowc.at {
+    import /absolute/path/to/games/server/games.routes.caddy "" /absolute/path/to/games
+}
+```
+
 The imported route file has no catch-all, so unrelated routes in an existing site
 remain untouched. It claims only the base prefix, the landing page's
 `styles.css` and `app.js`, and the game routes. The standalone example
@@ -57,7 +54,7 @@ remain untouched. It claims only the base prefix, the landing page's
 
 ## Routes
 
-- `/` (shared game index, relative to `GAMES_PREFIX`)
+- `/` (shared game index, relative to the first import argument)
 - `alignment-interview-sleeper/`
 - `checkpoint/`
 - `inverse/`
@@ -72,6 +69,6 @@ With the standalone `Caddyfile`, unknown routes return 404.
 
 ## Ports
 
-The backend ports default to 7410-7413. Override them consistently for the process
-launcher and Caddy with `SCRATCHPAD_PORT`, `COLLUDERS_PORT`, `DEBATE_PORT`, and
-`TURNOVER_PORT`.
+The Caddy routes proxy the backends on the launcher's default ports 7410-7413.
+If those ports are changed in the process environment, update the corresponding
+`reverse_proxy` addresses in `games.routes.caddy` as well.

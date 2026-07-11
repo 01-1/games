@@ -1,9 +1,22 @@
 {
   "name": "games-workspace",
   "private": true,
+  "workspaces": [
+    "alignment-interview-sleeper",
+    "checkpoint",
+    "inverse",
+    "money-game",
+    "scratchpad",
+    "server",
+    "the-colluders",
+    "the-debate",
+    "turnover",
+    "weak-supervisor"
+  ],
   "scripts": {
     "build": "npm --prefix server run build",
     "start": "npm --prefix server start",
+    "models:refresh": "npm --prefix server run models:refresh",
     "check": "npm --prefix server run check"
   }
 }

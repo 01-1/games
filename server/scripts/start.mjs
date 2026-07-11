@@ -2,6 +2,7 @@ import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import readline from "node:readline";
+import { startModelRefreshLoop } from "../lib/openrouter-models.mjs";
 
 const hostDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gamesDir = path.resolve(hostDir, "..");
@@ -46,6 +47,18 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 function startAll() {
   const children = new Set();
   let stopping = false;
+  const stopModelRefresh = startModelRefreshLoop({
+    onRefresh(catalog) {
+      if (catalog.source === "openrouter") {
+        console.log(`[games-host] refreshed ${catalog.freeModels.length} free OpenRouter models`);
+      } else {
+        console.warn(`[games-host] model refresh unavailable; using ${catalog.source}`);
+      }
+    },
+    onError(error) {
+      console.error(`[games-host] model refresh configuration failed: ${error instanceof Error ? error.message : error}`);
+    }
+  });
 
   for (const service of services) {
     const port = parsePort(process.env[service.portVariable], service.defaultPort, service.portVariable);
@@ -81,6 +94,7 @@ function startAll() {
   function stopAll(exitCode) {
     if (stopping) return;
     stopping = true;
+    stopModelRefresh();
     for (const child of children) child.kill("SIGTERM");
     const forceTimer = setTimeout(() => {
       for (const child of children) child.kill("SIGKILL");

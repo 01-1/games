@@ -1,7 +1,9 @@
 # Every top-level directory is an independent game repository.
+/node_modules/
 /*/
 !/server/
 
 # Local workspace configuration and secrets.
 .env
 .env.*
+/server/.cache/

@@ -2,8 +2,8 @@
 	# Optional global Caddy settings belong here.
 }
 
-{$GAMES_SITE:localhost} {
-	import games.routes.caddy
+localhost {
+	import games.routes.caddy /games .
 	# The imported routes serve the landing page and games; everything else is unknown.
 	respond 404
 }

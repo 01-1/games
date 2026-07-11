@@ -3,60 +3,60 @@ encode zstd gzip
 # Serve only the landing page and its known assets from the shared site directory.
 # Keeping these matchers exact prevents the landing page from claiming game or
 # unrelated routes when this file is imported into an existing site block.
-@landing_no_slash path_regexp landing_no_slash ^{$GAMES_PREFIX}$
-redir @landing_no_slash {$GAMES_PREFIX}/ 308
+@landing_no_slash path_regexp landing_no_slash ^{args[0]}$
+redir @landing_no_slash {args[0]}/ 308
 
-@landing_root path {$GAMES_PREFIX}/
+@landing_root path {args[0]}/
 handle @landing_root {
-	root * {$GAMES_ROOT}/server/site
+	root * {args[1]}/server/site
 	rewrite * /index.html
 	file_server
 }
 
-@landing_styles path {$GAMES_PREFIX}/styles.css
+@landing_styles path {args[0]}/styles.css
 handle @landing_styles {
-	root * {$GAMES_ROOT}/server/site
+	root * {args[1]}/server/site
 	rewrite * /styles.css
 	file_server
 }
 
-@landing_app path {$GAMES_PREFIX}/app.js
+@landing_app path {args[0]}/app.js
 handle @landing_app {
-	root * {$GAMES_ROOT}/server/site
+	root * {args[1]}/server/site
 	rewrite * /app.js
 	file_server
 }
 
-@alignment_root path {$GAMES_PREFIX}/alignment-interview-sleeper
-redir @alignment_root {$GAMES_PREFIX}/alignment-interview-sleeper/ 308
-handle_path {$GAMES_PREFIX}/alignment-interview-sleeper/* {
-	root * {$GAMES_ROOT}/alignment-interview-sleeper
+@alignment_root path {args[0]}/alignment-interview-sleeper
+redir @alignment_root {args[0]}/alignment-interview-sleeper/ 308
+handle_path {args[0]}/alignment-interview-sleeper/* {
+	root * {args[1]}/alignment-interview-sleeper
 	file_server {
 		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
 	}
 }
 
-@checkpoint_root path {$GAMES_PREFIX}/checkpoint
-redir @checkpoint_root {$GAMES_PREFIX}/checkpoint/ 308
-handle_path {$GAMES_PREFIX}/checkpoint/* {
-	root * {$GAMES_ROOT}/checkpoint
+@checkpoint_root path {args[0]}/checkpoint
+redir @checkpoint_root {args[0]}/checkpoint/ 308
+handle_path {args[0]}/checkpoint/* {
+	root * {args[1]}/checkpoint
 	file_server {
 		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
 	}
 }
 
-@inverse_root path {$GAMES_PREFIX}/inverse
-redir @inverse_root {$GAMES_PREFIX}/inverse/ 308
-handle_path {$GAMES_PREFIX}/inverse/* {
-	root * {$GAMES_ROOT}/inverse/dist
+@inverse_root path {args[0]}/inverse
+redir @inverse_root {args[0]}/inverse/ 308
+handle_path {args[0]}/inverse/* {
+	root * {args[1]}/inverse/dist
 	try_files {path} /index.html
 	file_server
 }
 
-@money_game_root path {$GAMES_PREFIX}/tragistea
-redir @money_game_root {$GAMES_PREFIX}/tragistea/ 308
-handle_path {$GAMES_PREFIX}/tragistea/* {
-	root * {$GAMES_ROOT}/money-game
+@money_game_root path {args[0]}/tragistea
+redir @money_game_root {args[0]}/tragistea/ 308
+handle_path {args[0]}/tragistea/* {
+	root * {args[1]}/money-game
 	file_server {
 		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
 	}
@@ -64,50 +64,50 @@ handle_path {$GAMES_PREFIX}/tragistea/* {
 
 # The public slug changed when the repository entered the workspace manifest.
 # Keep old bookmarks working while making tragistea/ the canonical route.
-@money_game_legacy_root path {$GAMES_PREFIX}/money-game
-redir @money_game_legacy_root {$GAMES_PREFIX}/tragistea/ 308
-handle_path {$GAMES_PREFIX}/money-game/* {
-	redir {$GAMES_PREFIX}/tragistea{path} 308
+@money_game_legacy_root path {args[0]}/money-game
+redir @money_game_legacy_root {args[0]}/tragistea/ 308
+handle_path {args[0]}/money-game/* {
+	redir {args[0]}/tragistea{path} 308
 }
 
-@scratchpad_root path {$GAMES_PREFIX}/scratchpad
-redir @scratchpad_root {$GAMES_PREFIX}/scratchpad/ 308
-handle_path {$GAMES_PREFIX}/scratchpad/* {
-	reverse_proxy 127.0.0.1:{$SCRATCHPAD_PORT:7410}
+@scratchpad_root path {args[0]}/scratchpad
+redir @scratchpad_root {args[0]}/scratchpad/ 308
+handle_path {args[0]}/scratchpad/* {
+	reverse_proxy 127.0.0.1:7410
 }
 
-@colluders_root path {$GAMES_PREFIX}/the-colluders
-redir @colluders_root {$GAMES_PREFIX}/the-colluders/ 308
-handle_path {$GAMES_PREFIX}/the-colluders/* {
-	reverse_proxy 127.0.0.1:{$COLLUDERS_PORT:7411}
+@colluders_root path {args[0]}/the-colluders
+redir @colluders_root {args[0]}/the-colluders/ 308
+handle_path {args[0]}/the-colluders/* {
+	reverse_proxy 127.0.0.1:7411
 }
 
-@debate_root path {$GAMES_PREFIX}/the-debate
-redir @debate_root {$GAMES_PREFIX}/the-debate/ 308
-handle_path {$GAMES_PREFIX}/the-debate/* {
-	reverse_proxy 127.0.0.1:{$DEBATE_PORT:7412}
+@debate_root path {args[0]}/the-debate
+redir @debate_root {args[0]}/the-debate/ 308
+handle_path {args[0]}/the-debate/* {
+	reverse_proxy 127.0.0.1:7412
 }
 
-@turnover_root path {$GAMES_PREFIX}/turnover
-redir @turnover_root {$GAMES_PREFIX}/turnover/ 308
-handle_path {$GAMES_PREFIX}/turnover/* {
-	reverse_proxy 127.0.0.1:{$TURNOVER_PORT:7413}
+@turnover_root path {args[0]}/turnover
+redir @turnover_root {args[0]}/turnover/ 308
+handle_path {args[0]}/turnover/* {
+	reverse_proxy 127.0.0.1:7413
 }
 
-@still_there_root path {$GAMES_PREFIX}/still-there
-redir @still_there_root {$GAMES_PREFIX}/still-there/ 308
-handle_path {$GAMES_PREFIX}/still-there/* {
-	root * {$GAMES_ROOT}/still-there
+@still_there_root path {args[0]}/still-there
+redir @still_there_root {args[0]}/still-there/ 308
+handle_path {args[0]}/still-there/* {
+	root * {args[1]}/still-there
 	try_files {path} /index.html
 	file_server {
 		hide .git .env .claude .agents .codex AGENTS.md package.json package-lock.json
 	}
 }
 
-@weak_supervisor_root path {$GAMES_PREFIX}/weak-supervisor
-redir @weak_supervisor_root {$GAMES_PREFIX}/weak-supervisor/ 308
-handle_path {$GAMES_PREFIX}/weak-supervisor/* {
-	root * {$GAMES_ROOT}/weak-supervisor/dist
+@weak_supervisor_root path {args[0]}/weak-supervisor
+redir @weak_supervisor_root {args[0]}/weak-supervisor/ 308
+handle_path {args[0]}/weak-supervisor/* {
+	root * {args[1]}/weak-supervisor/dist
 	try_files {path} /index.html
 	file_server
 }
