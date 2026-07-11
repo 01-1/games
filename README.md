@@ -67,6 +67,3 @@ Missing games are cloned. Existing games are fetched and fast-forwarded to the
 latest commit on their configured branch. Before processing the manifest, the
 script also checks out and fast-forwards this root repository's `main` branch.
 It stops rather than changing an unexpected remote or creating a merge commit.
-
-`still-there` currently has no `origin`, so it is local-only and is not listed
-in the manifest. Add it to `games.tsv` after configuring its remote.
