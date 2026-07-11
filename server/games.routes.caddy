@@ -1,5 +1,32 @@
 encode zstd gzip
 
+# Serve only the landing page and its known assets from the shared site directory.
+# Keeping these matchers exact prevents the landing page from claiming game or
+# unrelated routes when this file is imported into an existing site block.
+@landing_no_slash path_regexp landing_no_slash ^{$GAMES_PREFIX}$
+redir @landing_no_slash {$GAMES_PREFIX}/ 308
+
+@landing_root path {$GAMES_PREFIX}/
+handle @landing_root {
+	root * {$GAMES_ROOT}/server/site
+	rewrite * /index.html
+	file_server
+}
+
+@landing_styles path {$GAMES_PREFIX}/styles.css
+handle @landing_styles {
+	root * {$GAMES_ROOT}/server/site
+	rewrite * /styles.css
+	file_server
+}
+
+@landing_app path {$GAMES_PREFIX}/app.js
+handle @landing_app {
+	root * {$GAMES_ROOT}/server/site
+	rewrite * /app.js
+	file_server
+}
+
 @alignment_root path {$GAMES_PREFIX}/alignment-interview-sleeper
 redir @alignment_root {$GAMES_PREFIX}/alignment-interview-sleeper/ 308
 handle_path {$GAMES_PREFIX}/alignment-interview-sleeper/* {
@@ -26,13 +53,21 @@ handle_path {$GAMES_PREFIX}/inverse/* {
 	file_server
 }
 
-@money_game_root path {$GAMES_PREFIX}/money-game
-redir @money_game_root {$GAMES_PREFIX}/money-game/ 308
-handle_path {$GAMES_PREFIX}/money-game/* {
+@money_game_root path {$GAMES_PREFIX}/tragistea
+redir @money_game_root {$GAMES_PREFIX}/tragistea/ 308
+handle_path {$GAMES_PREFIX}/tragistea/* {
 	root * {$GAMES_ROOT}/money-game
 	file_server {
 		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
 	}
+}
+
+# The public slug changed when the repository entered the workspace manifest.
+# Keep old bookmarks working while making tragistea/ the canonical route.
+@money_game_legacy_root path {$GAMES_PREFIX}/money-game
+redir @money_game_legacy_root {$GAMES_PREFIX}/tragistea/ 308
+handle_path {$GAMES_PREFIX}/money-game/* {
+	redir {$GAMES_PREFIX}/tragistea{path} 308
 }
 
 @scratchpad_root path {$GAMES_PREFIX}/scratchpad

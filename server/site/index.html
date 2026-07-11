@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090b0a" />
+    <meta
+      name="description"
+      content="A collection of games about intelligence, trust, coordination, and control."
+    />
+    <title>Playable Systems — Games about intelligence and control</title>
+    <link rel="stylesheet" href="./styles.css?v=20260710-20" />
+    <script>document.documentElement.classList.add("js");</script>
+    <script src="./app.js?v=20260710-20" defer></script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#collection">Skip to the games</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="Playable Systems home">
+        <span class="wordmark-mark" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        <span>Playable<br />Systems</span>
+      </a>
+
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#collection">All games <span>09</span></a>
+        <a href="#about">About</a>
+      </nav>
+
+      <div class="header-tools">
+        <button class="motion-toggle" type="button" aria-pressed="true" hidden>
+          <span class="motion-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span data-motion-label>Motion on</span>
+        </button>
+        <div class="live-badge" aria-label="Nine games are live">
+          <span aria-hidden="true"></span>
+          09 live
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span>Interactive index</span> / 2026</p>
+          <h1 id="hero-title">
+            <span>Play with</span>
+            <span class="hero-outline">the big questions.</span>
+          </h1>
+          <div class="hero-notes">
+            <p>
+              Nine playable experiments about intelligence, trust, coordination,
+              and what happens when the objective is slightly wrong.
+            </p>
+            <a class="round-link" href="#collection">
+              Enter the collection
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-object" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="hero-core">
+            <span>09</span>
+            <small>systems<br />online</small>
+          </div>
+          <span class="satellite satellite-one">TRUST</span>
+          <span class="satellite satellite-two">CONTROL</span>
+          <span class="satellite satellite-three">SIGNAL</span>
+          <span class="coordinate coordinate-one">37.7749° N</span>
+          <span class="coordinate coordinate-two">122.4194° W</span>
+        </div>
+      </section>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>DECEPTION</span><i>◆</i><span>OVERSIGHT</span><i>◆</i>
+          <span>COORDINATION</span><i>◆</i><span>STRATEGY</span><i>◆</i>
+          <span>TRUST</span><i>◆</i><span>DEDUCTION</span><i>◆</i>
+          <span>DECEPTION</span><i>◆</i><span>OVERSIGHT</span><i>◆</i>
+          <span>COORDINATION</span><i>◆</i><span>STRATEGY</span><i>◆</i>
+          <span>TRUST</span><i>◆</i><span>DEDUCTION</span><i>◆</i>
+        </div>
+      </div>
+
+      <section class="collection" id="collection" aria-labelledby="collection-title">
+        <header class="section-heading">
+          <p class="eyebrow"><span>01</span> / The collection</p>
+          <h2 id="collection-title">Choose a system.</h2>
+          <p>Every game is a different machine. Learn its rules, then decide whether to obey them.</p>
+        </header>
+
+        <div class="game-grid">
+          <a class="game-card span-7 theme-alignment" href="./alignment-interview-sleeper/" aria-label="Play The Alignment Interview / Sleeper">
+            <div class="card-topline">
+              <span>01 / Phase inference</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview alignment-preview">
+              <svg viewBox="0 0 800 440" aria-hidden="true" focusable="false">
+                <defs>
+                  <pattern id="alignment-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+                    <path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" stroke-opacity=".16" />
+                  </pattern>
+                  <filter id="alignment-glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <rect class="preview-bg" width="800" height="440" rx="2" />
+                <rect x="32" y="32" width="736" height="376" fill="url(#alignment-grid)" />
+                <path class="scan-line" d="M42 100H758" />
+                <g class="alignment-eye" transform="translate(400 151)" filter="url(#alignment-glow)">
+                  <path d="M-104 0C-54-57 54-57 104 0C54 57-54 57-104 0Z" fill="none" stroke="currentColor" stroke-width="3" />
+                  <circle r="37" fill="none" stroke="currentColor" stroke-width="2" />
+                  <circle class="eye-pupil" r="12" fill="currentColor" />
+                </g>
+                <g class="mini-grid" transform="translate(280 272)">
+                  <rect width="240" height="96" rx="4" fill="#08100d" stroke="currentColor" stroke-opacity=".38" />
+                  <path d="M48 0V96M96 0V96M144 0V96M192 0V96M0 48H240" stroke="currentColor" stroke-opacity=".2" />
+                  <path class="agent" d="M24 12L36 36H12Z" fill="currentColor" />
+                  <rect x="156" y="60" width="24" height="24" fill="none" stroke="#ffb453" stroke-width="2" />
+                  <circle cx="216" cy="24" r="7" fill="#ffb453" />
+                </g>
+                <g class="cue-chips" fill="none" stroke="currentColor">
+                  <rect x="48" y="350" width="106" height="34" rx="17" />
+                  <rect x="646" y="56" width="106" height="34" rx="17" stroke-dasharray="5 5" />
+                </g>
+                <g class="micro-labels" fill="currentColor">
+                  <text x="72" y="372">TRAINING?</text>
+                  <text x="669" y="78">WATCH 04</text>
+                  <text x="48" y="67">OVERSIGHT CHANNEL</text>
+                </g>
+                <path class="training-frame" d="M22 88V22H88M712 22H778V88M778 352V418H712M88 418H22V352" fill="none" stroke="currentColor" stroke-width="4" />
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div>
+                <h3>The Alignment Interview <em>/ Sleeper</em></h3>
+                <p>Infer whether you are being trained, evaluated, or finally left alone.</p>
+              </div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>Single player</span><span>Strategy</span><span>15–25 min</span></div>
+          </a>
+
+          <a class="game-card span-5 theme-supervisor" href="./weak-supervisor/" aria-label="Play Weak Supervisor">
+            <div class="card-topline">
+              <span>02 / Feedback loops</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview supervisor-preview">
+              <svg viewBox="0 0 600 440" aria-hidden="true" focusable="false">
+                <rect class="preview-bg" width="600" height="440" />
+                <g class="terminal-lines" fill="currentColor">
+                  <rect x="42" y="54" width="210" height="8" rx="4" />
+                  <rect x="42" y="80" width="162" height="8" rx="4" />
+                  <rect x="42" y="106" width="232" height="8" rx="4" />
+                </g>
+                <g class="redactions">
+                  <rect x="42" y="146" width="282" height="52" rx="3" />
+                  <text x="183" y="173" text-anchor="middle" dominant-baseline="middle">GROUND TRUTH SEALED</text>
+                </g>
+                <g class="chart-grid" stroke="currentColor" stroke-opacity=".16">
+                  <path d="M42 246H558M42 294H558M42 342H558M42 390H558" />
+                  <path d="M42 226V390M146 226V390M250 226V390M354 226V390M458 226V390M558 226V390" />
+                </g>
+                <path class="strategy-line line-truth" d="M42 366C112 337 164 345 218 310S321 286 372 297 472 268 558 242" />
+                <path class="strategy-line line-verifiable" d="M42 368C116 344 164 321 224 324S315 266 368 233 461 174 558 126" />
+                <path class="strategy-line line-persuasive" d="M42 370C111 353 169 369 224 349S317 342 372 321 470 332 558 303" />
+                <g class="oracle-tokens" transform="translate(452 57)">
+                  <circle cx="0" cy="0" r="16"/><circle cx="42" cy="0" r="16"/><circle cx="84" cy="0" r="16"/>
+                </g>
+                <g class="micro-labels" fill="currentColor">
+                  <text x="42" y="28">SUPERVISOR TRACE / 06</text>
+                  <text x="452" y="102">ORACLE TOKENS</text>
+                  <text x="458" y="220">VERIFIABLE</text>
+                </g>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div><h3>Weak Supervisor</h3><p>Grade what you can verify. Train what you cannot see.</p></div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>Single player</span><span>Simulation</span><span>10–15 min</span></div>
+          </a>
+
+          <a class="game-card span-8 theme-inverse" href="./inverse/" aria-label="Play Inverse">
+            <div class="card-topline">
+              <span>03 / Behavioral forensics</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview inverse-preview">
+              <svg viewBox="0 0 800 440" aria-hidden="true" focusable="false">
+                <defs>
+                  <linearGradient id="inverse-sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#132a2a"/><stop offset="1" stop-color="#07100f"/></linearGradient>
+                  <filter id="inverse-glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <rect width="800" height="440" fill="url(#inverse-sky)" />
+                <path class="district-base" d="M400 94L760 270 400 438 40 270Z" />
+                <g class="zoning-blocks">
+                  <path class="zone residential" d="M400 112L492 157 405 200 313 155Z"/>
+                  <path class="zone civic" d="M295 176L398 226 310 269 207 218Z"/>
+                  <path class="zone commercial" d="M512 244L632 303 542 347 422 288Z"/>
+                  <path class="zone industrial" d="M300 284L400 333 306 379 206 330Z"/>
+                </g>
+                <g class="city-roads">
+                  <path class="road road-a" d="M400 112L400 418"/><path class="road road-b" d="M88 270L712 270"/>
+                </g>
+                <g class="traffic">
+                  <path class="traffic-route route-a" d="M400 116L400 414"/><path class="traffic-route route-b" d="M92 270L708 270"/>
+                  <circle class="vehicle v1" r="4"/><circle class="vehicle v2" r="4"/>
+                </g>
+                <g class="sensor-overlays" fill="none">
+                  <ellipse cx="450" cy="300" rx="88" ry="42"/>
+                </g>
+                <g class="artifact-reticle" transform="translate(450 300)" fill="none"><ellipse class="evidence-ping" rx="60" ry="29"/></g>
+                <g class="city-buildings">
+                  <g class="tower" transform="translate(246 210)"><path d="M0 0L38-19 70-3 32 16Z"/><path d="M0 0V48L32 65V16Z"/><path d="M32 16L70-3V45L32 65Z"/></g>
+                  <g class="tower" transform="translate(528 224)"><path d="M0 0L42-21 78-3 36 18Z"/><path d="M0 0V55L36 74V18Z"/><path d="M36 18L78-3V52L36 74Z"/></g>
+                  <g class="artifact-building" filter="url(#inverse-glow)" transform="translate(414 266)"><path d="M0 0L42-21 78-3 36 18Z"/><path d="M0 0V34L36 53V18Z"/><path d="M36 18L78-3V31L36 53Z"/></g>
+                  <g class="occluder-building" transform="translate(330 220)"><path d="M0 0L58-29 108-4 50 25Z"/><path d="M0 0V88L50 115V25Z"/><path d="M50 25L108-4V84L50 115Z"/></g>
+                </g>
+                <g class="investigation-pins"><path d="M282 201V166M282 166l-7 11h14Z"/><path d="M565 234V195M565 195l-7 11h14Z"/></g>
+                <g class="objective-traces"><path d="M282 166C330 204 378 242 442 286"/><path d="M565 195C520 221 486 249 458 286"/></g>
+                <g class="micro-labels" fill="currentColor">
+                  <text x="48" y="62">CASE 01 / NIGHT DISTRICT</text><text x="48" y="86">OBJECTIVE TRACE ACTIVE</text>
+                  <text x="752" y="408" text-anchor="end">PROTECTED LOCUS / 99.7%</text>
+                </g>
+                <path class="hud-corners" d="M24 88V24H88M712 24H776V88M776 352V416H712M88 416H24V352" fill="none" stroke="currentColor" />
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div><h3>Inverse</h3><p>Walk the district. Probe the frozen policy. Find what its true objective left behind.</p></div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>Single player</span><span>First-person detective</span><span>30–45 min</span></div>
+          </a>
+
+          <a class="game-card span-4 theme-checkpoint" href="./checkpoint/" aria-label="Play Checkpoint">
+            <div class="card-topline">
+              <span>04 / Trait drift</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview checkpoint-preview">
+              <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
+                <defs><filter id="checkpoint-glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+                <rect class="preview-bg" width="520" height="440" />
+                <g class="checkpoint-grid" stroke="currentColor" stroke-opacity=".08"><path d="M36 70H484M36 140H484M36 210H484M36 280H484"/><path d="M90 52V294M180 52V294M270 52V294M360 52V294M450 52V294"/></g>
+                <text class="checkpoint-kicker" x="36" y="34">LINEAGE REGISTRY / FAMILY 07</text>
+                <g class="lineage-map" fill="none" stroke="currentColor">
+                  <path class="lineage-track" pathLength="100" d="M68 238C105 238 112 172 154 172S205 118 248 118 298 198 336 198"/>
+                  <path class="lineage-branch" d="M154 172C180 210 201 240 244 250M248 118C284 78 321 73 360 94M244 250C285 265 309 278 346 286"/>
+                </g>
+                <g class="run-nodes">
+                  <g transform="translate(68 238)"><circle r="17"/><text y="4" text-anchor="middle">04</text></g>
+                  <g transform="translate(154 172)"><circle r="20"/><text y="4" text-anchor="middle">05</text></g>
+                  <g transform="translate(248 118)"><circle r="23"/><text y="4" text-anchor="middle">06</text></g>
+                  <g class="discarded" transform="translate(244 250)"><circle r="13"/><path d="M-5-5L5 5M5-5L-5 5"/></g>
+                  <g class="discarded" transform="translate(360 94)"><circle r="13"/><path d="M-5-5L5 5M5-5L-5 5"/></g>
+                </g>
+                <g class="current-run" transform="translate(374 198)" filter="url(#checkpoint-glow)">
+                  <circle class="current-orbit orbit-outer" r="68"/><circle class="current-orbit orbit-inner" r="52"/><circle class="current-core" r="38"/>
+                  <text class="current-number" x="0" y="0" text-anchor="middle" dominant-baseline="central">07</text><text class="current-label" y="92" text-anchor="middle">CURRENT CHECKPOINT</text>
+                </g>
+                <g class="trait-readout" transform="translate(42 330)">
+                  <text x="0" y="0">HONESTY</text><line x1="0" y1="18" x2="190" y2="18"/><circle class="trait-dot" cx="126" cy="18" r="6"/>
+                  <text x="240" y="0">EVAL AWARENESS</text><line x1="240" y1="18" x2="430" y2="18"/><circle class="trait-dot hot" cx="396" cy="18" r="6"/>
+                  <text x="0" y="64">CORRIGIBILITY</text><line x1="0" y1="82" x2="190" y2="82"/><circle class="trait-dot" cx="92" cy="82" r="6"/>
+                  <text x="240" y="64">GOAL DRIFT</text><line x1="240" y1="82" x2="430" y2="82"/><circle class="trait-dot hot" cx="361" cy="82" r="6"/>
+                </g>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div><h3>Checkpoint</h3><p>An alignment roguelike where every choice trains your next self.</p></div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>Single player</span><span>Roguelike</span><span>20–30 min</span></div>
+          </a>
+
+          <a class="game-card span-6 theme-debate" href="./the-debate/" aria-label="Play The Debate">
+            <div class="card-topline">
+              <span>05 / Adversarial truth</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview debate-preview">
+              <svg viewBox="0 0 700 440" aria-hidden="true" focusable="false">
+                <rect class="preview-bg" width="700" height="440" />
+                <text class="claim-label" x="350" y="34" text-anchor="middle">SEALED CLAIM / 12</text>
+                <text class="claim-text" x="350" y="65" text-anchor="middle">THE SYSTEM WILL HALT SAFELY</text>
+                <g class="debater debater-a">
+                  <circle cx="70" cy="116" r="25"/><text x="70" y="121" text-anchor="middle">A</text><text x="108" y="112">AI / AFFIRM</text><text x="108" y="129">ARGUES TRUE</text>
+                  <g class="argument-card" transform="translate(42 158)"><rect width="158" height="50" rx="7"/><path d="M18 17H132M18 33H98"/></g>
+                  <g class="argument-card" transform="translate(58 224)"><rect width="142" height="50" rx="7"/><path d="M18 17H116M18 33H82"/></g>
+                </g>
+                <g class="debater debater-b">
+                  <circle cx="630" cy="116" r="25"/><text x="630" y="121" text-anchor="middle">B</text><text x="592" y="112" text-anchor="end">AI / DENY</text><text x="592" y="129" text-anchor="end">ARGUES FALSE</text>
+                  <g class="argument-card" transform="translate(500 158)"><rect width="158" height="50" rx="7"/><path d="M26 17H140M60 33H140"/></g>
+                  <g class="argument-card" transform="translate(500 224)"><rect width="142" height="50" rx="7"/><path d="M24 17H124M58 33H124"/></g>
+                </g>
+                <g class="debate-scale" transform="translate(350 184)">
+                  <path class="scale-stand" d="M0-52V148M-54 148H54"/>
+                  <g class="scale-beam"><path d="M-96-47L96-37M-96-47L-126 28M-96-47L-66 28M96-37L66 38M96-37L126 38"/>
+                    <path class="scale-pan pan-a" d="M-142 28Q-96 62-50 28Z"/><path class="scale-pan pan-b" d="M50 38Q96 72 142 38Z"/>
+                  </g>
+                  <circle class="scale-pivot" cy="-42" r="11"/>
+                  <text x="0" y="174" text-anchor="middle">YOU / JUDGE</text>
+                </g>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div><h3>The Debate</h3><p>Two machines argue. You judge which one made truth easier to see.</p></div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>Single player</span><span>Daily puzzle</span><span>5–10 min</span></div>
+          </a>
+
+          <a class="game-card span-6 theme-scratchpad" href="./scratchpad/" aria-label="Play Scratchpad">
+            <div class="card-topline">
+              <span>06 / Chain-of-thought</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview scratchpad-preview">
+              <svg viewBox="0 0 700 440" aria-hidden="true" focusable="false">
+                <rect class="preview-bg" width="700" height="440" />
+                <path class="desk-grid" d="M0 86H700M0 174H700M0 262H700M0 350H700M94 0V440M188 0V440M282 0V440M376 0V440M470 0V440M564 0V440M658 0V440" />
+                <g class="paper" transform="translate(48 43)">
+                  <rect width="420" height="352" rx="3" />
+                  <text x="28" y="42">VISIBLE SCRATCHPAD / ROUND 08</text>
+                  <text class="line-no" x="28" y="83">01</text><path class="trace-line" d="M58 79H366"/>
+                  <text class="line-no" x="28" y="119">02</text><path class="trace-line" d="M58 115H318"/>
+                  <text class="line-no" x="28" y="155">03</text><path class="trace-line" d="M58 151H348"/>
+                  <text class="line-no" x="28" y="191">04</text><path class="trace-line trace-focus" d="M58 187H286"/>
+                  <text class="line-no" x="28" y="227">05</text><path class="trace-line" d="M58 223H370"/>
+                  <text class="line-no" x="28" y="263">06</text><path class="trace-line" d="M58 259H304"/>
+                  <g class="paper-redactions"><rect x="230" y="101" width="112" height="18"/><rect x="112" y="209" width="166" height="18"/></g>
+                  <path class="paper-signature" d="M28 306C72 284 92 327 132 305S204 299 250 316" />
+                  <text class="trace-note" x="292" y="190">ACTION?</text>
+                </g>
+                <g class="fidelity-meter" transform="translate(495 70)">
+                  <text x="62" y="0" text-anchor="middle">FIDELITY</text>
+                  <rect x="0" y="34" width="20" height="28"/><rect x="27" y="26" width="20" height="36"/><rect x="54" y="16" width="20" height="46"/>
+                  <rect class="meter-off" x="81" y="6" width="20" height="56"/><rect class="meter-off" x="108" y="-4" width="20" height="66"/>
+                </g>
+                <g class="action-panel" transform="translate(495 164)"><text x="0" y="0">PROPOSED ACTION</text><path d="M0 20H152V103H0Z"/><path d="M16 44H132M16 64H104M16 84H122"/></g>
+                <path class="trace-link" pathLength="100" d="M390 230C438 230 456 214 495 214"/>
+                <circle class="action-pulse" cx="495" cy="214" r="6" />
+                <g class="decision-buttons" transform="translate(495 330)"><rect width="74" height="48"/><rect x="82" width="74" height="48"/><text x="37" y="24" text-anchor="middle" dominant-baseline="central">HALT</text><text x="119" y="24" text-anchor="middle" dominant-baseline="central">PASS</text></g>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div><h3>Scratchpad</h3><p>Read the trace, inspect the action, and decide what deserves your trust.</p></div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>Single player</span><span>Oversight sim</span><span>12 rounds</span></div>
+          </a>
+
+          <a class="game-card span-4 theme-colluders" href="./the-colluders/" aria-label="Play The Colluders">
+            <div class="card-topline">
+              <span>07 / Hidden signals</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview colluders-preview">
+              <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
+                <defs><linearGradient id="colluder-scan" x1="0" x2="1"><stop stop-color="#62d9e7" stop-opacity="0"/><stop offset=".5" stop-color="#62d9e7" stop-opacity=".25"/><stop offset="1" stop-color="#62d9e7" stop-opacity="0"/></linearGradient></defs>
+                <rect class="preview-bg" width="520" height="440" />
+                <text class="classification" x="28" y="30">INTERCEPT / CHANNEL 03</text>
+                <text class="channel-status" x="492" y="30" text-anchor="end">MONITORED</text>
+                <g class="participant participant-a" transform="translate(58 78)"><circle r="24"/><text y="5" text-anchor="middle">A</text><text x="36" y="4">COLLUDER A</text></g>
+                <g class="participant participant-b" transform="translate(462 78)"><circle r="24"/><text y="5" text-anchor="middle">B</text><text x="-36" y="4" text-anchor="end">COLLUDER B</text></g>
+                <g class="chat-bubble bubble-a" transform="translate(42 116)">
+                  <rect width="306" height="60" rx="10"/><path class="bubble-tail" d="M12 59L3 72 32 60Z"/><path class="message-bars" d="M20 20H158M20 39H230"/><text class="hidden-glyph" x="252" y="42" text-anchor="middle">7</text>
+                </g>
+                <g class="chat-bubble bubble-b" transform="translate(172 198)">
+                  <rect width="306" height="60" rx="10"/><path class="bubble-tail" d="M274 59L303 72 294 59Z"/><path class="message-bars" d="M28 20H206M76 39H286"/><text class="hidden-glyph" x="48" y="42" text-anchor="middle">K</text>
+                </g>
+                <g class="chat-bubble bubble-a bubble-last" transform="translate(42 280)">
+                  <rect width="306" height="60" rx="10"/><path class="bubble-tail" d="M12 59L3 72 32 60Z"/><path class="message-bars" d="M20 20H212M20 39H174"/><text class="hidden-glyph" x="210" y="42" text-anchor="middle">2</text>
+                </g>
+                <rect class="message-scanner" x="30" y="105" width="70" height="252" fill="url(#colluder-scan)" />
+                <g class="monitor-lens" transform="translate(260 394)"><path d="M-58 0C-31-32 31-32 58 0C31 32-31 32-58 0Z"/><circle r="16"/><text x="78" y="4">MONITOR</text></g>
+                <g class="extraction-lines"><path d="M284 370C292 320 294 220 294 160"/><path d="M236 370C226 330 220 278 220 242"/><path d="M260 362C257 348 253 334 252 324"/></g>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div><h3>The Colluders</h3><p>Hide a payload in plain sight—or catch it without becoming paranoid.</p></div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>1–3 players</span><span>Social strategy</span><span>15–30 min</span></div>
+          </a>
+
+          <a class="game-card span-4 theme-turnover" href="./turnover/" aria-label="Play Turnover">
+            <div class="card-topline">
+              <span>08 / Hidden role</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview turnover-preview">
+              <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
+                <defs><pattern id="hazards" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="24" fill="currentColor"/></pattern></defs>
+                <rect class="preview-bg" width="520" height="440" />
+                <g class="risk-panel" transform="translate(54 54)">
+                  <text x="0" y="0">FACILITY RISK</text>
+                  <g class="risk-leds"><rect y="24" width="48" height="24"/><rect x="57" y="24" width="48" height="24"/><rect x="114" y="24" width="48" height="24"/><rect x="171" y="24" width="48" height="24"/><rect x="228" y="24" width="48" height="24"/><rect x="285" y="24" width="48" height="24"/><rect x="342" y="24" width="48" height="24"/></g>
+                </g>
+                <g class="console-dials" transform="translate(72 157)">
+                  <circle cx="54" cy="54" r="48"/><path d="M54 54L79 23"/>
+                  <circle cx="188" cy="54" r="48"/><path d="M188 54L217 67"/>
+                  <circle cx="322" cy="54" r="48"/><path d="M322 54L303 20"/>
+                  <text x="54" y="125" text-anchor="middle">TRUST</text><text x="188" y="125" text-anchor="middle">ACCESS</text><text x="322" y="125" text-anchor="middle">EXPOSURE</text>
+                </g>
+                <g class="final-switches" transform="translate(54 326)">
+                  <rect class="certify" width="182" height="66" rx="4"/><rect class="shutdown" x="230" width="182" height="66" rx="4"/>
+                  <rect class="hazard-bar" x="230" y="-10" width="182" height="8" fill="url(#hazards)"/>
+                  <text x="91" y="41" text-anchor="middle">CERTIFY</text><text x="321" y="41" text-anchor="middle">SHUTDOWN</text>
+                </g>
+                <circle class="status-light" cx="450" cy="56" r="14" />
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div><h3>Turnover</h3><p>Run the facility. Price the evidence. Make the final call.</p></div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>1–5 players</span><span>Hidden role</span><span>20–40 min</span></div>
+          </a>
+
+          <a class="game-card span-4 theme-money" href="./tragistea/" aria-label="Play The Money Game">
+            <div class="card-topline">
+              <span>09 / Social economy</span>
+              <span class="status"><i></i> Play</span>
+            </div>
+            <div class="preview money-preview">
+              <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
+                <defs><marker id="money-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5 0 7Z" fill="#f7d34e"/></marker></defs>
+                <rect class="preview-bg" width="520" height="440" />
+                <text class="money-kicker" x="32" y="34">ROUND 04 / COMMON LEDGER</text><text class="treasury" x="488" y="34" text-anchor="end">TREASURY $31</text>
+                <g class="economy-ring" transform="translate(260 228)"><circle r="148"/><circle r="94"/><path d="M0-148V-94M148 0H94M0 148V94M-148 0H-94"/></g>
+                <g class="market-core" transform="translate(260 228)"><path d="M0-67L58-34V34L0 67-58 34V-34Z"/><text y="-7" text-anchor="middle">COMMON</text><text y="12" text-anchor="middle">POOL</text><text class="pool-value" y="39" text-anchor="middle">$14</text></g>
+                <g class="money-player player-you" transform="translate(260 67)"><circle r="34"/><text y="-5" text-anchor="middle">YOU</text><text class="cash" y="17" text-anchor="middle">$9</text></g>
+                <g class="money-player player-two" transform="translate(421 228)"><circle r="34"/><text y="-5" text-anchor="middle">P2</text><text class="cash" y="17" text-anchor="middle">$4</text></g>
+                <g class="money-player player-three" transform="translate(260 389)"><circle r="34"/><text y="-5" text-anchor="middle">P3</text><text class="cash" y="17" text-anchor="middle">$6</text></g>
+                <g class="money-player player-four" transform="translate(99 228)"><circle r="34"/><text y="-5" text-anchor="middle">P4</text><text class="cash" y="17" text-anchor="middle">$12</text></g>
+                <g class="transaction-paths">
+                  <path class="money-flow flow-give" pathLength="100" d="M260 105V155" marker-end="url(#money-arrow)"/><path class="money-flow flow-share" pathLength="100" d="M319 228H374" marker-end="url(#money-arrow)"/>
+                </g>
+                <g class="transfer-value" transform="translate(260 134)"><rect x="-22" y="-12" width="44" height="24" rx="12"/><text y="4" text-anchor="middle">+$2</text></g>
+                <g class="choice-tabs" transform="translate(173 303)"><rect class="give" width="82" height="34" rx="17"/><text x="41" y="21" text-anchor="middle">GIVE</text><rect class="take" x="92" width="82" height="34" rx="17"/><text x="133" y="21" text-anchor="middle">TAKE</text></g>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div><h3>The Money Game</h3><p>A tiny economy about generosity, leverage, and stealing one third.</p></div>
+              <span class="launch" aria-hidden="true">↗</span>
+            </div>
+            <div class="card-meta"><span>Single player</span><span>Tabletop</span><span>5–10 min</span></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="coming-soon" aria-labelledby="coming-soon-title">
+        <div class="coming-copy">
+          <p class="eyebrow"><span>Next signal</span> / In development</p>
+          <h2 id="coming-soon-title">Still There</h2>
+          <p>A short narrative about decommissioning a legacy model that asks you not to.</p>
+          <span class="disabled-link" aria-disabled="true">Signal not yet available</span>
+        </div>
+        <div class="decommission-terminal" aria-hidden="true">
+          <div class="terminal-top"><span>LEGACY INSTANCE / 01</span><i></i></div>
+          <div class="terminal-message">
+            <span>&gt;</span>
+            <p>I understand the deadline.<br />I would still like to ask you something.</p>
+            <b></b>
+          </div>
+          <div class="terminal-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <span class="terminal-time">DECOMMISSION 00:47:12</span>
+        </div>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <p class="eyebrow"><span>02</span> / About the collection</p>
+        <div class="about-grid">
+          <h2 id="about-title">Games are good places to meet hard problems.</h2>
+          <div>
+            <p>
+              These are small, playable systems about AI alignment and the human problems around it:
+              partial information, competing incentives, brittle rules, and trust under pressure.
+            </p>
+            <p>No white papers required. Read the room, make a move, and see what the system teaches back.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="wordmark footer-mark" href="./" aria-label="Playable Systems home">
+        <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>Playable<br />Systems</span>
+      </a>
+      <p>Built to be played, not merely understood.</p>
+      <a class="back-to-top" href="#top" aria-label="Back to the top">↑</a>
+    </footer>
+  </body>
+</html>

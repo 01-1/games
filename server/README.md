@@ -1,8 +1,8 @@
 # Games Server
 
 Shared build, process, and Caddy configuration for the sibling game repositories.
-It does not merge their Git histories and it intentionally does not serve a page at
-the base prefix.
+It does not merge their Git histories. A shared landing page in `server/site/` is
+served at the base prefix and links to the independently hosted games.
 
 ## Build and run
 
@@ -23,7 +23,8 @@ GAMES_PREFIX= \
 caddy run --config ./server/Caddyfile
 ```
 
-That produces URLs such as `https://games.meowc.at/inverse/`.
+That serves the landing page at `https://games.meowc.at/` and produces game URLs
+such as `https://games.meowc.at/inverse/`.
 
 To mount beneath an existing domain instead:
 
@@ -34,7 +35,9 @@ GAMES_PREFIX=/games \
 caddy run --config ./server/Caddyfile
 ```
 
-That produces URLs such as `https://meowc.at/games/inverse/`. Keep
+That serves the landing page at `https://meowc.at/games/` and produces game URLs
+such as `https://meowc.at/games/inverse/`. Requests to `/games` redirect to the
+trailing-slash URL so relative site assets resolve beneath the prefix. Keep
 `GAMES_PREFIX` empty or use a leading slash with no trailing slash.
 
 If the domain already has a Caddy site block, import the route file directly:
@@ -48,22 +51,24 @@ meowc.at {
 
 The same `GAMES_ROOT` and `GAMES_PREFIX` environment variables apply.
 The imported route file has no catch-all, so unrelated routes in an existing site
-remain untouched. The standalone example `Caddyfile` returns 404 for the base
-prefix and all unknown routes.
+remain untouched. It claims only the base prefix, the landing page's
+`styles.css` and `app.js`, and the game routes. The standalone example
+`Caddyfile` returns 404 for all unknown routes.
 
 ## Routes
 
+- `/` (shared game index, relative to `GAMES_PREFIX`)
 - `alignment-interview-sleeper/`
 - `checkpoint/`
 - `inverse/`
-- `money-game/`
+- `tragistea/` (The Money Game; legacy `money-game/` URLs redirect here)
 - `scratchpad/`
 - `the-colluders/`
 - `the-debate/`
 - `turnover/`
 - `weak-supervisor/`
 
-With the standalone `Caddyfile`, the base prefix and unknown routes return 404.
+With the standalone `Caddyfile`, unknown routes return 404.
 
 ## Ports
 

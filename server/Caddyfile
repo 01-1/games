@@ -4,6 +4,6 @@
 
 {$GAMES_SITE:localhost} {
 	import games.routes.caddy
-	# No base-prefix page or catch-all content is served.
+	# The imported routes serve the landing page and games; everything else is unknown.
 	respond 404
 }
