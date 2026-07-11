@@ -90,6 +90,37 @@ The server-backed games are proxied to the fixed loopback ports `7410` through
 The standalone `server/Caddyfile` provides a local `/games` configuration. More
 details and the complete route list are in `server/README.md`.
 
+## Start on boot
+
+On a systemd-based server, install and immediately start a persistent service:
+
+```sh
+npm ci
+npm run build
+npm run service:install
+```
+
+The installer detects the current workspace, npm and Node paths, runs the
+service as the user invoking the script, enables it at boot, and restarts it
+after failures. It may prompt for `sudo` while writing the unit and controlling
+systemd. Do not run the npm command itself with `sudo`.
+
+Useful service commands:
+
+```sh
+npm run service:status
+journalctl -u alignment-arcade -f
+sudo systemctl restart alignment-arcade
+npm run service:uninstall
+```
+
+Override `SERVICE_NAME`, `SERVICE_USER`, `NPM_BIN`, or `NODE_BIN` when installing
+if the detected defaults do not match the server. For example:
+
+```sh
+SERVICE_USER=arcade NPM_BIN=/usr/bin/npm NODE_BIN=/usr/bin/node npm run service:install
+```
+
 `games.tsv` lists repositories managed by the workspace. Its optional fourth
 column records a public game slug. Run:
 

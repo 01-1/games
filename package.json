@@ -17,6 +17,9 @@
     "build": "npm --prefix server run build",
     "start": "npm --prefix server start",
     "models:refresh": "npm --prefix server run models:refresh",
+    "service:install": "./server/scripts/systemd-service.sh install",
+    "service:status": "./server/scripts/systemd-service.sh status",
+    "service:uninstall": "./server/scripts/systemd-service.sh uninstall",
     "check": "npm --prefix server run check"
   }
 }
