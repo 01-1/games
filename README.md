@@ -1,7 +1,20 @@
-# Games workspace
+# Alignment Arcade
 
-This repository tracks workspace-level files. Each top-level game directory is
-an independent Git repository and is ignored by this parent repository.
+Alignment Arcade is a collection of playable experiments about intelligence,
+trust, coordination, and what happens when the objective is slightly wrong.
+Across the collection, you play both sides: the AI and the overseer, whether
+that overseer is a grader, judge, detective, or someone else trying to keep
+control.
+
+The games explore alignment through deception, weak supervision, debate,
+interpretability, collusion, hidden objectives, trait drift, and shutdown
+decisions. They turn those ideas into choices under uncertainty, where evidence
+is limited, incentives matter, and the overseer can be wrong too.
+
+## Repository
+
+Each top-level game directory is an independent Git repository with its own
+history and remote, and is ignored by this parent repository.
 
 The shared hosting configuration is the exception: `server/` belongs to this
 root repository. Build every hosted frontend or start the server-backed games
