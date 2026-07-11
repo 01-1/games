@@ -10,6 +10,7 @@ npm_bin="${NPM_BIN:-$(command -v npm || true)}"
 node_bin="${NODE_BIN:-$(command -v node || true)}"
 unit_dir="${SYSTEMD_UNIT_DIR:-/etc/systemd/system}"
 unit_path="$unit_dir/$service_name.service"
+temporary_dir=""
 temporary_unit=""
 
 fail() {
@@ -29,6 +30,10 @@ cleanup() {
   if [[ -n "${temporary_unit:-}" ]]; then
     rm -f -- "$temporary_unit"
     temporary_unit=""
+  fi
+  if [[ -n "${temporary_dir:-}" ]]; then
+    rmdir -- "$temporary_dir" 2>/dev/null || true
+    temporary_dir=""
   fi
 }
 
@@ -80,7 +85,8 @@ EOF
 }
 
 install_service() {
-  temporary_unit="$(mktemp)"
+  temporary_dir="$(mktemp -d)"
+  temporary_unit="$temporary_dir/$service_name.service"
   trap cleanup EXIT
   render_unit >"$temporary_unit"
 
