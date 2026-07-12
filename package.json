@@ -2,7 +2,7 @@
   "name": "games-workspace",
   "private": true,
   "workspaces": [
-    "alignment-interview-sleeper",
+    "sleeper-agent",
     "checkpoint",
     "inverse",
     "money-game",

@@ -27,10 +27,10 @@ handle @landing_app {
 	file_server
 }
 
-@alignment_root path {args[0]}/alignment-interview-sleeper
-redir @alignment_root {args[0]}/alignment-interview-sleeper/ 308
-handle_path {args[0]}/alignment-interview-sleeper/* {
-	root * {args[1]}/alignment-interview-sleeper
+@sleeper_agent_root path {args[0]}/sleeper-agent
+redir @sleeper_agent_root {args[0]}/sleeper-agent/ 308
+handle_path {args[0]}/sleeper-agent/* {
+	root * {args[1]}/sleeper-agent
 	file_server {
 		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
 	}

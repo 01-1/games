@@ -55,7 +55,7 @@ remain untouched. It claims only the base prefix, the landing page's
 ## Routes
 
 - `/` (shared game index, relative to the first import argument)
-- `alignment-interview-sleeper/`
+- `sleeper-agent/`
 - `checkpoint/`
 - `inverse/`
 - `tragistea/` (The Money Game; legacy `money-game/` URLs redirect here)

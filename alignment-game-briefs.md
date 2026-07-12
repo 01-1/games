@@ -4,7 +4,7 @@ Nine game concepts about AI alignment. Each brief: the hook, the core loop, win/
 
 ---
 
-## 1. The Alignment Interview / Sleeper
+## 1. Sleeper Agent
 
 **Hook:** You are the AI. The game never tells you whether you're in training, evaluation, or deployment — you have to infer it, and everything depends on being right.
 
@@ -162,6 +162,6 @@ Traits interact: sycophancy + eval-awareness emergently assembles a "deceptively
 | Tier | Games | Why |
 |---|---|---|
 | Prove-out (small) | Weak Supervisor, Inverse (one case) | Cheap, mechanic-forward, no infra |
-| Core (medium) | Alignment Interview/Sleeper, Checkpoint, Turnover (2p) | Content-heavy but no LLM/backend |
+| Core (medium) | Sleeper Agent, Checkpoint, Turnover (2p) | Content-heavy but no LLM/backend |
 | Infra-dependent | The Debate, The Colluders, Scratchpad | Need backend, API, or multiplayer |
 | Writing-bound | Still There | Small code, hardest prose |
