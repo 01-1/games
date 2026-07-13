@@ -1,15 +1,27 @@
-encode zstd gzip
+@games_content path_regexp games_content ^{args[0]}(?:$|/$|/styles\.css$|/app\.js$|/(?:sleeper-agent|checkpoint|inverse|tragistea|money-game|scratchpad|the-colluders|the-debate|turnover|still-there|weak-supervisor)(?:/|$))
+encode @games_content zstd gzip
 
 # Serve only the landing page and its known assets from the shared site directory.
 # Keeping these matchers exact prevents the landing page from claiming game or
 # unrelated routes when this file is imported into an existing site block.
 @landing_no_slash path_regexp landing_no_slash ^{args[0]}$
+@landing_no_slash_query {
+	path_regexp landing_no_slash_query ^{args[0]}$
+	expression {http.request.uri.query} != ""
+}
+redir @landing_no_slash_query {args[0]}/?{http.request.uri.query} 308
 redir @landing_no_slash {args[0]}/ 308
 
 @landing_root path {args[0]}/
 handle @landing_root {
 	root * {args[1]}/server/site
 	rewrite * /index.html
+	header {
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "geolocation=(), microphone=(), camera=()"
+		Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+	}
 	file_server
 }
 
@@ -17,6 +29,12 @@ handle @landing_root {
 handle @landing_styles {
 	root * {args[1]}/server/site
 	rewrite * /styles.css
+	header {
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "geolocation=(), microphone=(), camera=()"
+		Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+	}
 	file_server
 }
 
@@ -24,6 +42,12 @@ handle @landing_styles {
 handle @landing_app {
 	root * {args[1]}/server/site
 	rewrite * /app.js
+	header {
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "geolocation=(), microphone=(), camera=()"
+		Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+	}
 	file_server
 }
 
@@ -65,10 +89,19 @@ handle_path {args[0]}/tragistea/* {
 # The public slug changed when the repository entered the workspace manifest.
 # Keep old bookmarks working while making tragistea/ the canonical route.
 @money_game_legacy_root path {args[0]}/money-game
-redir @money_game_legacy_root {args[0]}/tragistea/ 308
-handle_path {args[0]}/money-game/* {
-	redir {args[0]}/tragistea{path} 308
+@money_game_legacy_root_query {
+	path {args[0]}/money-game
+	expression {http.request.uri.query} != ""
 }
+redir @money_game_legacy_root_query {args[0]}/tragistea/?{http.request.uri.query} 308
+redir @money_game_legacy_root {args[0]}/tragistea/ 308
+@money_game_legacy_nested path_regexp money_game_legacy_nested ^{args[0]}/money-game/(.*)$
+@money_game_legacy_nested_query {
+	path_regexp money_game_legacy_nested_query ^{args[0]}/money-game/(.*)$
+	expression {http.request.uri.query} != ""
+}
+redir @money_game_legacy_nested_query {args[0]}/tragistea/{http.regexp.money_game_legacy_nested_query.1}?{http.request.uri.query} 308
+redir @money_game_legacy_nested {args[0]}/tragistea/{http.regexp.money_game_legacy_nested.1} 308
 
 @scratchpad_root path {args[0]}/scratchpad
 redir @scratchpad_root {args[0]}/scratchpad/ 308
@@ -100,7 +133,7 @@ handle_path {args[0]}/still-there/* {
 	root * {args[1]}/still-there
 	try_files {path} /index.html
 	file_server {
-		hide .git .env .claude .agents .codex AGENTS.md package.json package-lock.json
+		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
 	}
 }
 

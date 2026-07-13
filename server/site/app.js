@@ -1,7 +1,13 @@
+document.documentElement.classList.add("js");
+
 const cards = [...document.querySelectorAll(".game-card")];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const motionToggle = document.querySelector(".motion-toggle");
 const motionLabel = motionToggle?.querySelector("[data-motion-label]");
+const trackingEye = document.querySelector(".alignment-eye");
+const trackingPupil = trackingEye?.querySelector(".eye-pupil");
+let trackingFrame = null;
+let pendingTrackingEvent = null;
 const motionStorageKey = "playable-systems:motion";
 let savedMotion = readMotionPreference();
 let motionEnabled = savedMotion ? savedMotion === "on" : !prefersReducedMotion.matches;
@@ -49,24 +55,29 @@ if (motionToggle) {
 }
 
 if ("IntersectionObserver" in window) {
-  const cardObserver = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          entry.target.classList.toggle("is-active", motionEnabled && !document.hidden);
-        } else {
-          entry.target.classList.remove("is-active");
+  try {
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            entry.target.classList.toggle("is-active", motionEnabled && !document.hidden);
+          } else {
+            entry.target.classList.remove("is-active");
+          }
         }
-      }
-    },
-    { rootMargin: "8% 0px 8%", threshold: 0.08 }
-  );
+      },
+      { rootMargin: "8% 0px 8%", threshold: 0.08 }
+    );
 
-  cards.forEach((card, index) => {
-    card.style.transitionDelay = `${Math.min(index % 3, 2) * 70}ms`;
-    cardObserver.observe(card);
-  });
+    cards.forEach((card, index) => {
+      card.style.transitionDelay = `${Math.min(index % 3, 2) * 70}ms`;
+      cardObserver.observe(card);
+    });
+    document.documentElement.classList.add("reveal-enabled");
+  } catch {
+    cards.forEach((card) => card.classList.add("is-visible"));
+  }
 } else {
   cards.forEach((card) => {
     card.classList.add("is-visible");
@@ -100,6 +111,34 @@ if (window.matchMedia("(pointer: fine)").matches) {
     });
 
   }
+}
+
+if (trackingEye && trackingPupil && window.matchMedia("(pointer: fine)").matches) {
+  document.addEventListener("pointermove", (event) => {
+    if (!motionEnabled) return;
+    pendingTrackingEvent = event;
+    if (trackingFrame !== null) return;
+
+    trackingFrame = window.requestAnimationFrame(() => {
+      trackingFrame = null;
+      const nextEvent = pendingTrackingEvent;
+      pendingTrackingEvent = null;
+      if (!motionEnabled || !nextEvent) return;
+
+      const bounds = trackingEye.getBoundingClientRect();
+      const deltaX = nextEvent.clientX - (bounds.left + bounds.width / 2);
+      const deltaY = nextEvent.clientY - (bounds.top + bounds.height / 2);
+      const distance = Math.hypot(deltaX, deltaY) || 1;
+      const reach = Math.min(1, distance / 180);
+      const x = (deltaX / distance) * 21 * reach;
+      const y = (deltaY / distance) * 13 * reach;
+
+      trackingEye.classList.add("is-pointer-tracking");
+      trackingPupil.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  });
+
+  document.documentElement.addEventListener("pointerleave", resetTrackingEye);
 }
 
 const hero = document.querySelector(".hero");
@@ -169,7 +208,18 @@ function applyMotionPreference(enabled) {
   }
 
   if (motionLabel) motionLabel.textContent = enabled ? "Motion: on" : "Motion: reduced";
+  if (!enabled) resetTrackingEye();
   syncActiveCards();
+}
+
+function resetTrackingEye() {
+  if (trackingFrame !== null) {
+    window.cancelAnimationFrame(trackingFrame);
+    trackingFrame = null;
+  }
+  pendingTrackingEvent = null;
+  trackingEye?.classList.remove("is-pointer-tracking");
+  trackingPupil?.style.removeProperty("transform");
 }
 
 function syncActiveCards() {

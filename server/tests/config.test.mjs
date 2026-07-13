@@ -54,8 +54,8 @@ test("landing page features the alignment collection and Still There", async () 
     assert.match(index, new RegExp(`href="\\./${game}/"`));
   }
 
-  assert.equal((index.match(/class="game-card /g) ?? []).length, games.length + 1);
-  assert.equal((index.match(/<svg /g) ?? []).length, games.length + 1);
+  assert.equal((index.match(/class="game-card /g) ?? []).length, games.length);
+  assert.equal((index.match(/<svg /g) ?? []).length, games.length);
   assert.doesNotMatch(index, /preview-tag/);
   assert.match(styles, /\.preview svg text\s*\{[^}]*stroke:\s*none;/s);
   assert.match(styles, /\.theme-money\s*\{[^}]*--card-accent:\s*#f7d34e;/s);
@@ -65,4 +65,17 @@ test("landing page features the alignment collection and Still There", async () 
   assert.match(index, /<section class="collection bonus-collection"/);
   assert.match(index, /<a class="game-card theme-money" href="\.\/tragistea\//);
   assert.match(index, /This is not the actual game\./);
+});
+
+test("landing routes apply browser headers without weakening raw-checkout hides", async () => {
+  const routes = await readFile(path.join(root, "games.routes.caddy"), "utf8");
+
+  assert.equal((routes.match(/X-Content-Type-Options "nosniff"/g) ?? []).length, 3);
+  assert.equal((routes.match(/Referrer-Policy "strict-origin-when-cross-origin"/g) ?? []).length, 3);
+  assert.equal((routes.match(/Permissions-Policy "geolocation=\(\), microphone=\(\), camera=\(\)"/g) ?? []).length, 3);
+  assert.equal((routes.match(/Content-Security-Policy /g) ?? []).length, 3);
+  assert.match(
+    routes,
+    /@still_there_root[\s\S]*?hide \.git \.env \.claude \.agents \.codex tests README\.md AGENTS\.md package\.json package-lock\.json/
+  );
 });

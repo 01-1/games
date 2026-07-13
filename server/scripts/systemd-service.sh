@@ -5,7 +5,16 @@ action="${1:-install}"
 service_name="${SERVICE_NAME:-alignment-arcade}"
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 workspace_dir="$(cd -- "$script_dir/../.." && pwd)"
-service_user="${SERVICE_USER:-${SUDO_USER:-$(id -un)}}"
+if [[ -v SERVICE_USER ]]; then
+  service_user="$SERVICE_USER"
+  service_user_explicit=1
+elif [[ -n "${SUDO_USER:-}" && "$SUDO_USER" != root ]]; then
+  service_user="$SUDO_USER"
+  service_user_explicit=0
+else
+  service_user="$(id -un)"
+  service_user_explicit=0
+fi
 npm_bin="${NPM_BIN:-$(command -v npm || true)}"
 node_bin="${NODE_BIN:-$(command -v node || true)}"
 unit_dir="${SYSTEMD_UNIT_DIR:-/etc/systemd/system}"
@@ -41,6 +50,9 @@ validate_settings() {
   [[ "$service_name" =~ ^[A-Za-z0-9_.@-]+$ ]] || fail "invalid SERVICE_NAME: $service_name"
   [[ "$service_user" =~ ^[A-Za-z_][A-Za-z0-9_.-]*\$?$ ]] || fail "invalid SERVICE_USER: $service_user"
   id "$service_user" >/dev/null 2>&1 || fail "SERVICE_USER does not exist: $service_user"
+  if [[ "$service_user_explicit" -eq 0 && "$(id -u "$service_user")" -eq 0 ]]; then
+    fail "SERVICE_USER resolved to root implicitly; set SERVICE_USER explicitly to choose root"
+  fi
   [[ "$workspace_dir" == /* ]] || fail "workspace path must be absolute: $workspace_dir"
   [[ ! "$workspace_dir" =~ [[:space:]\"\\] ]] || fail "workspace path cannot contain whitespace, quotes, or backslashes: $workspace_dir"
   [[ -n "$npm_bin" && -x "$npm_bin" ]] || fail "npm was not found; set NPM_BIN to its absolute path"
