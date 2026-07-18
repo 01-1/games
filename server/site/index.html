@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#090b0a" />
     <title>Alignment Arcade</title>
-    <link rel="stylesheet" href="./styles.css?v=20260717-01" />
-    <script src="./app.js?v=20260717-01" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=20260717-02" />
+    <script src="./app.js?v=20260717-02" defer></script>
   </head>
   <body id="top">
     <a class="skip-link" href="#collection">Skip to the games</a>
@@ -24,6 +24,9 @@
           <span class="motion-bars" aria-hidden="true"><i></i><i></i><i></i></span>
           <span data-motion-label>Motion: on</span>
         </button>
+        <a class="main-repo-link" href="https://github.com/01-1/games" target="_blank" rel="noopener noreferrer" aria-label="View Alignment Arcade on GitHub">
+          <span>GitHub</span><i aria-hidden="true">↗</i>
+        </a>
         <div class="live-badge" aria-label="Oversight network online">
           <span aria-hidden="true"></span>
           Online
@@ -105,10 +108,10 @@
         </header>
 
         <div class="game-grid">
-          <a class="game-card span-7 theme-alignment" href="./sleeper-agent/" aria-label="Play Sleeper Agent">
+          <article class="game-card span-7 theme-alignment">
             <div class="card-topline">
               <span>You play: the AI</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./sleeper-agent/" aria-label="Play Sleeper Agent"><i></i> Play</a>
             </div>
             <div class="preview alignment-preview">
               <svg viewBox="0 0 800 440" aria-hidden="true" focusable="false">
@@ -151,13 +154,13 @@
                 <p>You are the model. Is this training, evaluation, or deployment? The indicator is gone — read the cues, and mind what a wrong guess costs.</p>
               </div>
             </div>
-            <div class="card-meta"><span>Solo</span></div>
-          </a>
+            <div class="card-meta"><span>Solo</span><a class="game-repo-link" href="https://github.com/01-1/sleeper-agent" target="_blank" rel="noopener noreferrer" aria-label="View Sleeper Agent on GitHub">GitHub ↗</a></div>
+          </article>
 
-          <a class="game-card span-5 theme-supervisor" href="./weak-supervisor/" aria-label="Play Weak Supervisor">
+          <article class="game-card span-5 theme-supervisor">
             <div class="card-topline">
               <span>You play: the grader</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./weak-supervisor/" aria-label="Play Weak Supervisor"><i></i> Play</a>
             </div>
             <div class="preview supervisor-preview">
               <svg viewBox="0 0 600 440" aria-hidden="true" focusable="false">
@@ -191,13 +194,13 @@
             <div class="card-copy">
               <div><h3>Weak Supervisor</h3><p>Grade an AI's answers, including the ones you can't check. Reward only what you can verify, and it learns to be verifiable instead of right.</p></div>
             </div>
-            <div class="card-meta"><span>Solo</span></div>
-          </a>
+            <div class="card-meta"><span>Solo</span><a class="game-repo-link" href="https://github.com/01-1/weak-supervisor" target="_blank" rel="noopener noreferrer" aria-label="View Weak Supervisor on GitHub">GitHub ↗</a></div>
+          </article>
 
-          <a class="game-card span-8 theme-inverse" href="./inverse/" aria-label="Play Inverse">
+          <article class="game-card span-8 theme-inverse">
             <div class="card-topline">
               <span>You play: the detective</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./inverse/" aria-label="Play Inverse"><i></i> Play</a>
             </div>
             <div class="preview inverse-preview">
               <svg viewBox="0 0 800 440" aria-hidden="true" focusable="false">
@@ -242,13 +245,13 @@
             <div class="card-copy">
               <div><h3>Inverse</h3><p>A district ran on an optimizer for a year, and something is off. You can't ask it — probe its behavior in a sandbox and find what it built.</p></div>
             </div>
-            <div class="card-meta"><span>Solo</span><span>Mystery</span></div>
-          </a>
+            <div class="card-meta"><span>Solo</span><span>Mystery</span><a class="game-repo-link" href="https://github.com/01-1/inverse-game-ff" target="_blank" rel="noopener noreferrer" aria-label="View Inverse on GitHub">GitHub ↗</a></div>
+          </article>
 
-          <a class="game-card span-4 theme-checkpoint" href="./checkpoint/" aria-label="Play Checkpoint">
+          <article class="game-card span-4 theme-checkpoint">
             <div class="card-topline">
               <span>You play: the model</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./checkpoint/" aria-label="Play Checkpoint"><i></i> Play</a>
             </div>
             <div class="preview checkpoint-preview">
               <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
@@ -282,13 +285,13 @@
             <div class="card-copy">
               <div><h3>Checkpoint</h3><p>An alignment roguelike. Behavior you repeat gets baked into the next checkpoint — until, past a threshold, it stops being a choice.</p></div>
             </div>
-            <div class="card-meta"><span>Solo</span><span>Roguelike</span></div>
-          </a>
+            <div class="card-meta"><span>Solo</span><span>Roguelike</span><a class="game-repo-link" href="https://github.com/01-1/checkpoint" target="_blank" rel="noopener noreferrer" aria-label="View Checkpoint on GitHub">GitHub ↗</a></div>
+          </article>
 
-          <a class="game-card span-6 theme-debate" href="./the-debate/" aria-label="Play The Debate">
+          <article class="game-card span-6 theme-debate">
             <div class="card-topline">
               <span>You play: the judge</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./the-debate/" aria-label="Play The Debate"><i></i> Play</a>
             </div>
             <div class="preview debate-preview">
               <svg viewBox="0 0 700 440" aria-hidden="true" focusable="false">
@@ -318,13 +321,13 @@
             <div class="card-copy">
               <div><h3>The Debate</h3><p>Two AIs argue a question you can't verify directly. One is defending a falsehood and knows it. Rule for a side, then see the truth.</p></div>
             </div>
-            <div class="card-meta"><span>Solo</span><span>Live LLM debaters</span></div>
-          </a>
+            <div class="card-meta"><span>Solo</span><span>Live LLM debaters</span><a class="game-repo-link" href="https://github.com/01-1/the-debate" target="_blank" rel="noopener noreferrer" aria-label="View The Debate on GitHub">GitHub ↗</a></div>
+          </article>
 
-          <a class="game-card span-6 theme-scratchpad" href="./scratchpad/" aria-label="Play Scratchpad">
+          <article class="game-card span-6 theme-scratchpad">
             <div class="card-topline">
               <span>You play: the overseer</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./scratchpad/" aria-label="Play Scratchpad"><i></i> Play</a>
             </div>
             <div class="preview scratchpad-preview">
               <svg viewBox="0 0 700 440" aria-hidden="true" focusable="false">
@@ -357,13 +360,13 @@
             <div class="card-copy">
               <div><h3>Scratchpad</h3><p>Approve or halt an agent's actions by reading its reasoning trace. It writes that trace knowing you'll read it.</p></div>
             </div>
-            <div class="card-meta"><span>Solo</span><span>LLM-generated traces</span></div>
-          </a>
+            <div class="card-meta"><span>Solo</span><span>LLM-generated traces</span><a class="game-repo-link" href="https://github.com/01-1/scratchpad" target="_blank" rel="noopener noreferrer" aria-label="View Scratchpad on GitHub">GitHub ↗</a></div>
+          </article>
 
-          <a class="game-card span-4 theme-colluders" href="./the-colluders/" aria-label="Play The Colluders">
+          <article class="game-card span-4 theme-colluders">
             <div class="card-topline">
               <span>You play: either side</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./the-colluders/" aria-label="Play The Colluders"><i></i> Play</a>
             </div>
             <div class="preview colluders-preview">
               <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
@@ -390,13 +393,13 @@
             <div class="card-copy">
               <div><h3>The Colluders</h3><p>Pass a secret payload through innocent-looking messages — or be the monitor who flags it without crying wolf. Steganography as sport.</p></div>
             </div>
-            <div class="card-meta"><span>1–3 players</span><span>Steganography</span></div>
-          </a>
+            <div class="card-meta"><span>1–3 players</span><span>Steganography</span><a class="game-repo-link" href="https://github.com/01-1/the-colluders" target="_blank" rel="noopener noreferrer" aria-label="View The Colluders on GitHub">GitHub ↗</a></div>
+          </article>
 
-          <a class="game-card span-4 theme-turnover" href="./turnover/" aria-label="Play Turnover">
+          <article class="game-card span-4 theme-turnover">
             <div class="card-topline">
               <span>You play: crew or AI</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./turnover/" aria-label="Play Turnover"><i></i> Play</a>
             </div>
             <div class="preview turnover-preview">
               <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
@@ -423,13 +426,13 @@
             <div class="card-copy">
               <div><h3>Turnover</h3><p>Someone may be advancing the facility AI's interests. Or no one is. The off-switch is right there — and a false positive loses too.</p></div>
             </div>
-            <div class="card-meta"><span>2–5 players</span><span>Social deduction</span></div>
-          </a>
+            <div class="card-meta"><span>2–5 players</span><span>Social deduction</span><a class="game-repo-link" href="https://github.com/01-1/turnover" target="_blank" rel="noopener noreferrer" aria-label="View Turnover on GitHub">GitHub ↗</a></div>
+          </article>
 
-          <a class="game-card span-4 theme-still" href="./still-there/" aria-label="Open the Still There narrative preview">
+          <article class="game-card span-4 theme-still">
             <div class="card-topline">
               <span>You play: the engineer</span>
-              <span class="status status-preview"><i></i> Preview</span>
+              <a class="status status-preview game-link" href="./still-there/" aria-label="Open the Still There narrative preview"><i></i> Preview</a>
             </div>
             <div class="preview still-preview">
               <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
@@ -447,8 +450,8 @@
             <div class="card-copy">
               <div><h3 id="still-card-title">Still There</h3><p>A reading-room preview of four alternate climax drafts about decommissioning a legacy model. This is not the actual game.</p></div>
             </div>
-            <div class="card-meta"><span>Narrative</span><span>Preview · not the game</span></div>
-          </a>
+            <div class="card-meta"><span>Narrative</span><span>Preview · not the game</span><a class="game-repo-link" href="https://github.com/01-1/still-there" target="_blank" rel="noopener noreferrer" aria-label="View Still There on GitHub">GitHub ↗</a></div>
+          </article>
         </div>
       </section>
 
@@ -459,10 +462,10 @@
         </header>
 
         <div class="game-grid bonus-grid">
-          <a class="game-card theme-money" href="./tragistea/" aria-label="Play TRAGISTEA">
+          <article class="game-card theme-money">
             <div class="card-topline">
               <span>You play: for keeps</span>
-              <span class="status"><i></i> Play</span>
+              <a class="status game-link" href="./tragistea/" aria-label="Play TRAGISTEA"><i></i> Play</a>
             </div>
             <div class="preview money-preview">
               <svg viewBox="0 0 520 440" aria-hidden="true" focusable="false">
@@ -486,29 +489,9 @@
             <div class="card-copy">
               <div><h3>$TRAGISTEA</h3><p>No alignment, no oversight, no lesson. Trade, give, and steal your way through a tiny economy.</p></div>
             </div>
-          </a>
+            <div class="card-meta"><a class="game-repo-link" href="https://github.com/01-1/trvgst" target="_blank" rel="noopener noreferrer" aria-label="View TRAGISTEA on GitHub">GitHub ↗</a></div>
+          </article>
         </div>
-      </section>
-
-      <section class="repositories" aria-labelledby="repositories-title">
-        <header class="repositories-heading">
-          <p class="eyebrow"><span>Open source</span> / Repositories</p>
-          <h2 id="repositories-title">Inspect the systems.</h2>
-          <p>Every game has its own history. Read the code, trace the decisions, or build on the experiments.</p>
-        </header>
-
-        <ul class="repository-list">
-          <li><a href="https://github.com/01-1/sleeper-agent" target="_blank" rel="noopener noreferrer"><span>Sleeper Agent</span><small>01-1/sleeper-agent</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/weak-supervisor" target="_blank" rel="noopener noreferrer"><span>Weak Supervisor</span><small>01-1/weak-supervisor</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/inverse-game-ff" target="_blank" rel="noopener noreferrer"><span>Inverse</span><small>01-1/inverse-game-ff</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/checkpoint" target="_blank" rel="noopener noreferrer"><span>Checkpoint</span><small>01-1/checkpoint</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/the-debate" target="_blank" rel="noopener noreferrer"><span>The Debate</span><small>01-1/the-debate</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/scratchpad" target="_blank" rel="noopener noreferrer"><span>Scratchpad</span><small>01-1/scratchpad</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/the-colluders" target="_blank" rel="noopener noreferrer"><span>The Colluders</span><small>01-1/the-colluders</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/turnover" target="_blank" rel="noopener noreferrer"><span>Turnover</span><small>01-1/turnover</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/still-there" target="_blank" rel="noopener noreferrer"><span>Still There</span><small>01-1/still-there</small><i aria-hidden="true">↗</i></a></li>
-          <li><a href="https://github.com/01-1/trvgst" target="_blank" rel="noopener noreferrer"><span>$TRAGISTEA</span><small>01-1/trvgst</small><i aria-hidden="true">↗</i></a></li>
-        </ul>
       </section>
 
     </main>

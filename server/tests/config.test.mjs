@@ -38,7 +38,7 @@ test("Caddy exposes the landing page and every backend without a catch-all route
   assert.equal((routes.match(/hide \.git \.env/g) ?? []).length, 4);
 });
 
-test("landing page features the alignment collection and Still There", async () => {
+test("landing page features the collection and links every game repository from its card", async () => {
   const index = await readFile(path.join(root, "site", "index.html"), "utf8");
   const styles = await readFile(path.join(root, "site", "styles.css"), "utf8");
   const manifest = await readFile(path.join(root, "..", "games.tsv"), "utf8");
@@ -50,22 +50,26 @@ test("landing page features the alignment collection and Still There", async () 
       return { repository: repository.replace(/\.git$/, ""), slug: publicSlug || directory };
     });
 
+  const cards = [...index.matchAll(/<article class="game-card[^>]*>([\s\S]*?)<\/article>/g)].map((match) => match[1]);
+
   for (const { repository, slug } of entries) {
-    assert.match(index, new RegExp(`href="\\./${slug}/"`));
-    assert.match(index, new RegExp(`href="${repository}"`));
+    const card = cards.find((markup) => markup.includes(`href="${repository}"`));
+    assert.ok(card, `${repository} must be linked from its game card`);
+    assert.match(card, new RegExp(`class="status[^"]*game-link" href="\\./${slug}/"`));
   }
 
-  assert.equal((index.match(/class="game-card /g) ?? []).length, entries.length);
+  assert.equal(cards.length, entries.length);
   assert.equal((index.match(/<svg /g) ?? []).length, entries.length);
-  assert.equal((index.match(/<li><a href="https:\/\/github\.com\//g) ?? []).length, entries.length);
+  assert.equal((index.match(/class="game-repo-link"/g) ?? []).length, entries.length);
+  assert.match(index, /class="main-repo-link" href="https:\/\/github\.com\/01-1\/games"/);
   assert.doesNotMatch(index, /preview-tag/);
   assert.match(styles, /\.preview svg text\s*\{[^}]*stroke:\s*none;/s);
   assert.match(styles, /\.theme-money\s*\{[^}]*--card-accent:\s*#f7d34e;/s);
   assert.match(styles, /\.money-preview \.preview-bg\s*\{[^}]*fill:\s*#0c1210;/s);
-  assert.match(index, /<a class="game-card span-4 theme-still" href="\.\/still-there\//);
+  assert.match(index, /<article class="game-card span-4 theme-still">/);
   assert.match(index, /<h3 id="still-card-title">Still There<\/h3>/);
   assert.match(index, /<section class="collection bonus-collection"/);
-  assert.match(index, /<a class="game-card theme-money" href="\.\/tragistea\//);
+  assert.match(index, /<article class="game-card theme-money">/);
   assert.match(index, /This is not the actual game\./);
 });
 

@@ -145,6 +145,33 @@ a {
   outline: none;
 }
 
+.main-repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  font: 700 8px/1 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.main-repo-link i {
+  font-style: normal;
+  font-size: 12px;
+}
+
+.main-repo-link:hover,
+.main-repo-link:focus-visible {
+  border-color: var(--acid);
+  background: var(--acid);
+  color: #090b0a;
+  outline: none;
+}
+
 .motion-bars {
   display: flex;
   align-items: center;
@@ -570,7 +597,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
 }
 
 .game-card:hover,
-.game-card:focus-visible {
+.game-card:focus-within {
   z-index: 3;
   background: var(--paper-bright);
   box-shadow: 7px 7px 0 var(--card-accent);
@@ -578,7 +605,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
   outline: none;
 }
 
-.game-card:focus-visible {
+.game-card:focus-within {
   outline: 3px solid var(--card-accent);
   outline-offset: 3px;
 }
@@ -614,6 +641,17 @@ html.reveal-enabled .game-card:not(.is-visible) {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+.game-link::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+}
+
+.game-link:focus-visible {
+  outline: none;
 }
 
 .status i {
@@ -658,7 +696,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
 }
 
 .game-card:hover .preview::before,
-.game-card:focus-visible .preview::before {
+.game-card:focus-within .preview::before {
   opacity: 1;
 }
 
@@ -739,6 +777,26 @@ html.reveal-enabled .game-card:not(.is-visible) {
   vertical-align: middle;
 }
 
+.game-repo-link {
+  position: relative;
+  z-index: 2;
+  margin-left: auto;
+  padding: 7px 9px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.game-repo-link:hover,
+.game-repo-link:focus-visible {
+  border-color: var(--card-accent);
+  background: var(--card-accent);
+  color: #090b0a;
+  outline: none;
+}
+
 /* Alignment preview */
 .alignment-preview .preview-bg { fill: #07100d; }
 .alignment-preview { color: #bafc73; }
@@ -753,7 +811,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
 .game-card.is-active .alignment-preview .alignment-eye.is-pointer-tracking .eye-pupil { animation: none; }
 .game-card.is-active .alignment-preview .agent { animation: grid-agent 4s steps(1, end) infinite; }
 .game-card:hover .alignment-preview .training-frame,
-.game-card:focus-visible .alignment-preview .training-frame { animation: frame-flicker 1.1s steps(2, end) 3; }
+.game-card:focus-within .alignment-preview .training-frame { animation: frame-flicker 1.1s steps(2, end) 3; }
 
 /* Weak Supervisor preview */
 .supervisor-preview { color: #76f0ad; }
@@ -770,7 +828,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
 .game-card.is-active .supervisor-preview .line-verifiable { animation-delay: 180ms; }
 .game-card.is-active .supervisor-preview .line-persuasive { animation-delay: 360ms; }
 .game-card:hover .supervisor-preview .redactions,
-.game-card:focus-visible .supervisor-preview .redactions { animation: sealed-blink 900ms steps(2, end) 3; }
+.game-card:focus-within .supervisor-preview .redactions { animation: sealed-blink 900ms steps(2, end) 3; }
 
 /* Inverse preview */
 .inverse-preview { color: #ffb453; }
@@ -802,7 +860,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
 .inverse-preview:has(.road:hover) .route-b { d: path("M88 270C244 222 552 322 710 270"); stroke: #ffb453; }
 .game-card.is-active .inverse-preview .evidence-ping { animation: evidence-ping 2.2s ease-in-out infinite; }
 .game-card:hover .inverse-preview .artifact-building,
-.game-card:focus-visible .inverse-preview .artifact-building { animation: artifact-pulse 1.3s ease-in-out 3; }
+.game-card:focus-within .inverse-preview .artifact-building { animation: artifact-pulse 1.3s ease-in-out 3; }
 
 /* Checkpoint preview */
 .checkpoint-preview { color: #aa8cff; }
@@ -927,7 +985,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
 .game-card.is-active .turnover-preview .risk-leds rect:nth-child(4) { animation: led-on 1.4s .4s steps(2,end) infinite; }
 .game-card.is-active .turnover-preview .risk-leds rect:nth-child(5) { animation: led-on 1.4s .8s steps(2,end) infinite; }
 .game-card:hover .turnover-preview .status-light,
-.game-card:focus-visible .turnover-preview .status-light { animation: warning-light 700ms steps(2,end) 5; }
+.game-card:focus-within .turnover-preview .status-light { animation: warning-light 700ms steps(2,end) 5; }
 
 /* Still There preview */
 .still-preview { color: #a8b6c0; }
@@ -1176,98 +1234,6 @@ html.reveal-enabled .game-card:not(.is-visible) {
   color: var(--muted);
 }
 
-.repositories {
-  position: relative;
-  z-index: 1;
-  padding: clamp(82px, 10vw, 150px) var(--page-gutter);
-  border-top: 1px solid var(--ink);
-  background: var(--paper-bright);
-}
-
-.repositories-heading {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  align-items: end;
-  gap: 40px;
-  margin-bottom: clamp(48px, 7vw, 90px);
-}
-
-.repositories-heading h2 {
-  margin: 0;
-  font: 900 clamp(3.7rem, 7vw, 8rem) / .84 var(--display);
-  letter-spacing: -.035em;
-  text-transform: uppercase;
-}
-
-.repositories-heading > p:last-child {
-  max-width: 32ch;
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.repository-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--ink);
-  list-style: none;
-}
-
-.repository-list li {
-  min-width: 0;
-  border-bottom: 1px solid var(--ink);
-}
-
-.repository-list li:nth-child(odd) {
-  border-right: 1px solid var(--ink);
-}
-
-.repository-list a {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: center;
-  gap: clamp(12px, 2vw, 28px);
-  min-height: 82px;
-  padding: 18px clamp(14px, 2vw, 28px);
-  transition: background 180ms ease, color 180ms ease;
-}
-
-.repository-list a:hover,
-.repository-list a:focus-visible {
-  background: var(--acid);
-  color: #090b0a;
-  outline: none;
-}
-
-.repository-list a:focus-visible {
-  box-shadow: inset 0 0 0 3px #090b0a;
-}
-
-.repository-list span {
-  min-width: 0;
-  font: 800 clamp(1rem, 1.55vw, 1.4rem) / 1 var(--display);
-  letter-spacing: -.02em;
-  text-transform: uppercase;
-}
-
-.repository-list small {
-  color: var(--muted);
-  font: 700 10px/1 var(--mono);
-  letter-spacing: .04em;
-}
-
-.repository-list a:hover small,
-.repository-list a:focus-visible small {
-  color: #354018;
-}
-
-.repository-list i {
-  font: normal 20px/1 var(--sans);
-}
-
 .site-footer {
   position: relative;
   z-index: 1;
@@ -1433,14 +1399,6 @@ html.reveal-enabled .game-card:not(.is-visible) {
 
   .about h2 { max-width: 12ch; }
 
-  .repositories-heading {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .repositories-heading h2 { font-size: clamp(4.2rem, 13vw, 7rem); }
-
-  .repositories-heading > p:last-child { justify-self: end; }
 }
 
 @media (max-width: 620px) {
@@ -1457,6 +1415,14 @@ html.reveal-enabled .game-card:not(.is-visible) {
   }
 
   .motion-toggle [data-motion-label] { display: none; }
+
+  .main-repo-link {
+    justify-content: center;
+    width: 36px;
+    padding-inline: 8px;
+  }
+
+  .main-repo-link span { display: none; }
 
   .wordmark { font-size: 12px; }
 
@@ -1513,18 +1479,6 @@ html.reveal-enabled .game-card:not(.is-visible) {
     flex-wrap: wrap;
     gap: 9px;
   }
-
-  .repository-list { grid-template-columns: 1fr; }
-
-  .repository-list li:nth-child(odd) { border-right: 0; }
-
-  .repository-list a {
-    grid-template-columns: minmax(0, 1fr) auto;
-    min-height: 74px;
-    padding-inline: 12px;
-  }
-
-  .repository-list small { display: none; }
 
   .coming-soon { min-height: 720px; }
 
@@ -1589,5 +1543,5 @@ html.motion-disabled *::after {
     border: 1px solid CanvasText;
   }
 
-  .game-card:focus-visible { outline-color: Highlight; }
+  .game-card:focus-within { outline-color: Highlight; }
 }
