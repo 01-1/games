@@ -1176,6 +1176,98 @@ html.reveal-enabled .game-card:not(.is-visible) {
   color: var(--muted);
 }
 
+.repositories {
+  position: relative;
+  z-index: 1;
+  padding: clamp(82px, 10vw, 150px) var(--page-gutter);
+  border-top: 1px solid var(--ink);
+  background: var(--paper-bright);
+}
+
+.repositories-heading {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: clamp(48px, 7vw, 90px);
+}
+
+.repositories-heading h2 {
+  margin: 0;
+  font: 900 clamp(3.7rem, 7vw, 8rem) / .84 var(--display);
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+
+.repositories-heading > p:last-child {
+  max-width: 32ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.repository-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ink);
+  list-style: none;
+}
+
+.repository-list li {
+  min-width: 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.repository-list li:nth-child(odd) {
+  border-right: 1px solid var(--ink);
+}
+
+.repository-list a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: clamp(12px, 2vw, 28px);
+  min-height: 82px;
+  padding: 18px clamp(14px, 2vw, 28px);
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.repository-list a:hover,
+.repository-list a:focus-visible {
+  background: var(--acid);
+  color: #090b0a;
+  outline: none;
+}
+
+.repository-list a:focus-visible {
+  box-shadow: inset 0 0 0 3px #090b0a;
+}
+
+.repository-list span {
+  min-width: 0;
+  font: 800 clamp(1rem, 1.55vw, 1.4rem) / 1 var(--display);
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+
+.repository-list small {
+  color: var(--muted);
+  font: 700 10px/1 var(--mono);
+  letter-spacing: .04em;
+}
+
+.repository-list a:hover small,
+.repository-list a:focus-visible small {
+  color: #354018;
+}
+
+.repository-list i {
+  font: normal 20px/1 var(--sans);
+}
+
 .site-footer {
   position: relative;
   z-index: 1;
@@ -1340,6 +1432,15 @@ html.reveal-enabled .game-card:not(.is-visible) {
   }
 
   .about h2 { max-width: 12ch; }
+
+  .repositories-heading {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .repositories-heading h2 { font-size: clamp(4.2rem, 13vw, 7rem); }
+
+  .repositories-heading > p:last-child { justify-self: end; }
 }
 
 @media (max-width: 620px) {
@@ -1412,6 +1513,18 @@ html.reveal-enabled .game-card:not(.is-visible) {
     flex-wrap: wrap;
     gap: 9px;
   }
+
+  .repository-list { grid-template-columns: 1fr; }
+
+  .repository-list li:nth-child(odd) { border-right: 0; }
+
+  .repository-list a {
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 74px;
+    padding-inline: 12px;
+  }
+
+  .repository-list small { display: none; }
 
   .coming-soon { min-height: 720px; }
 

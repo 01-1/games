@@ -42,20 +42,22 @@ test("landing page features the alignment collection and Still There", async () 
   const index = await readFile(path.join(root, "site", "index.html"), "utf8");
   const styles = await readFile(path.join(root, "site", "styles.css"), "utf8");
   const manifest = await readFile(path.join(root, "..", "games.tsv"), "utf8");
-  const games = manifest
+  const entries = manifest
     .split("\n")
     .filter((line) => line && !line.startsWith("#"))
     .map((line) => {
-      const [directory, , , publicSlug] = line.split("\t");
-      return publicSlug || directory;
+      const [directory, repository, , publicSlug] = line.split("\t");
+      return { repository: repository.replace(/\.git$/, ""), slug: publicSlug || directory };
     });
 
-  for (const game of games) {
-    assert.match(index, new RegExp(`href="\\./${game}/"`));
+  for (const { repository, slug } of entries) {
+    assert.match(index, new RegExp(`href="\\./${slug}/"`));
+    assert.match(index, new RegExp(`href="${repository}"`));
   }
 
-  assert.equal((index.match(/class="game-card /g) ?? []).length, games.length);
-  assert.equal((index.match(/<svg /g) ?? []).length, games.length);
+  assert.equal((index.match(/class="game-card /g) ?? []).length, entries.length);
+  assert.equal((index.match(/<svg /g) ?? []).length, entries.length);
+  assert.equal((index.match(/<li><a href="https:\/\/github\.com\//g) ?? []).length, entries.length);
   assert.doesNotMatch(index, /preview-tag/);
   assert.match(styles, /\.preview svg text\s*\{[^}]*stroke:\s*none;/s);
   assert.match(styles, /\.theme-money\s*\{[^}]*--card-accent:\s*#f7d34e;/s);
