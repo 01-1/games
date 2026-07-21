@@ -1,4 +1,4 @@
-@games_content path_regexp games_content ^{args[0]}(?:$|/$|/styles\.css$|/app\.js$|/(?:sleeper-agent|checkpoint|inverse|tragistea|money-game|scratchpad|the-colluders|the-debate|turnover|still-there|weak-supervisor)(?:/|$))
+@games_content path_regexp games_content ^{args[0]}(?:$|/$|/styles\.css$|/app\.js$|/(?:sleeper-agent|checkpoint|inverse|tragistea|money-game|df-lexical-field|scratchpad|the-colluders|the-debate|turnover|still-there|weak-supervisor)(?:/|$))
 encode @games_content zstd gzip
 
 # Serve only the landing page and its known assets from the shared site directory.
@@ -83,6 +83,15 @@ handle_path {args[0]}/tragistea/* {
 	root * {args[1]}/money-game
 	file_server {
 		hide .git .env .claude .agents .codex tests README.md AGENTS.md package.json package-lock.json
+	}
+}
+
+@df_lexical_field_root path {args[0]}/df-lexical-field
+redir @df_lexical_field_root {args[0]}/df-lexical-field/ 308
+handle_path {args[0]}/df-lexical-field/* {
+	root * {args[1]}/df-lexical-field
+	file_server {
+		hide .git .env .claude .agents .codex __pycache__ README.md AGENTS.md requirements.txt generate_embedding.py df_name_words.txt
 	}
 }
 

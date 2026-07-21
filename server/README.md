@@ -57,6 +57,7 @@ remain untouched. It claims only the base prefix, the landing page's
 - `/` (shared game index, relative to the first import argument)
 - `sleeper-agent/`
 - `checkpoint/`
+- `df-lexical-field/`
 - `inverse/`
 - `tragistea/` (The Money Game; legacy `money-game/` URLs redirect here)
 - `scratchpad/`

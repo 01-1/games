@@ -73,6 +73,13 @@ http://127.0.0.1:${port} {
       );
     }
 
+    for (const asset of ["/df-lexical-field/", "/df-lexical-field/app.js", "/df-lexical-field/embedding-data.js"]) {
+      const response = await fetch(`${base}${prefix}${asset}`);
+      assert.equal(response.status, 200, asset);
+    }
+    const hiddenLexicalSource = await fetch(`${base}${prefix}/df-lexical-field/generate_embedding.py`);
+    assert.equal(hiddenLexicalSource.status, 404);
+
     const outside = await fetch(`${base}/outside`, {
       headers: { "accept-encoding": "gzip" }
     });

@@ -26,6 +26,8 @@ test("Caddy exposes the landing page and every backend without a catch-all route
   assert.match(routes, /@landing_app path \{args\[0\]\}\/app\.js/);
   assert.match(routes, /@money_game_root path \{args\[0\]\}\/tragistea/);
   assert.match(routes, /root \* \{args\[1\]\}\/money-game/);
+  assert.match(routes, /@df_lexical_field_root path \{args\[0\]\}\/df-lexical-field/);
+  assert.match(routes, /root \* \{args\[1\]\}\/df-lexical-field/);
   assert.match(routes, /@money_game_legacy_root path \{args\[0\]\}\/money-game/);
   assert.match(routes, /redir @money_game_legacy_root \{args\[0\]\}\/tragistea\//);
   assert.match(routes, /@still_there_root path \{args\[0\]\}\/still-there/);
@@ -35,7 +37,7 @@ test("Caddy exposes the landing page and every backend without a catch-all route
   assert.match(caddyfile, /import games\.routes\.caddy \/games \./);
   assert.match(caddyfile, /respond 404/);
   assert.doesNotMatch(routes, /respond 404/);
-  assert.equal((routes.match(/hide \.git \.env/g) ?? []).length, 4);
+  assert.equal((routes.match(/hide \.git \.env/g) ?? []).length, 5);
 });
 
 test("landing page features the collection and links every game repository from its card", async () => {

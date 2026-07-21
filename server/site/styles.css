@@ -522,12 +522,12 @@ a {
 }
 
 .game-grid.bonus-grid {
-  grid-template-columns: minmax(0, 520px);
+  grid-template-columns: repeat(2, minmax(0, 520px));
   justify-content: start;
 }
 
 .bonus-grid > .game-card {
-  grid-column: 1 / -1 !important;
+  grid-column: auto !important;
   width: 100%;
 }
 
@@ -620,6 +620,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
 .theme-turnover { --card-accent: #ff9e3e; }
 .theme-still { --card-accent: #9ac6cf; }
 .theme-money { --card-accent: #f7d34e; }
+.theme-lexical { --card-accent: #89e5c2; }
 
 .card-topline,
 .card-meta {
@@ -1057,6 +1058,25 @@ html.reveal-enabled .game-card:not(.is-visible) {
 .game-card.is-active .money-preview .money-flow { animation: money-transfer 2.6s linear infinite; }
 .game-card.is-active .money-preview .transfer-value rect { animation: money-value 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 
+/* Dwarf Fortress lexical field preview */
+.lexical-preview { color: #89e5c2; }
+.lexical-preview .preview-bg { fill: #090d14; }
+.lexical-preview .lexical-grid { fill: none; stroke: #d8fff0; stroke-opacity: .055; }
+.lexical-preview .lexical-orbits { fill: none; stroke: #89e5c2; stroke-opacity: .13; stroke-dasharray: 4 8; }
+.lexical-preview .lexical-links { fill: none; stroke: #89e5c2; stroke-opacity: .34; stroke-width: 1.4; }
+.lexical-preview .lexical-points { fill: #89e5c2; }
+.lexical-preview .lexical-points circle:nth-child(3n) { fill: #e99b65; }
+.lexical-preview .lexical-points circle:nth-child(4n) { fill: #c88be0; }
+.lexical-preview .lexical-labels text { fill: #dff9ef; font-size: 8px; }
+.lexical-preview .lexical-search rect { fill: #101925; stroke: #89e5c2; stroke-opacity: .4; }
+.lexical-preview .lexical-search circle,
+.lexical-preview .lexical-search path { fill: none; stroke: #89e5c2; stroke-width: 1.5; }
+.lexical-preview .lexical-search text,
+.lexical-preview .lexical-kicker { fill: #8e98a8; font-size: 7px; }
+.game-card.is-active .lexical-preview .lexical-points circle { animation: lexical-pulse 3.4s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.game-card.is-active .lexical-preview .lexical-points circle:nth-child(2n) { animation-delay: -1.2s; }
+.game-card.is-active .lexical-preview .lexical-points circle:nth-child(3n) { animation-delay: -2.3s; }
+
 .coming-soon {
   position: relative;
   z-index: 1;
@@ -1313,6 +1333,7 @@ html.reveal-enabled .game-card:not(.is-visible) {
 @keyframes still-reboot-message { 0%, 18%, 82%, 100% { opacity: 0; } 19%, 81% { opacity: 1; } }
 @keyframes money-transfer { to { stroke-dashoffset: -100; } }
 @keyframes money-value { 50% { transform: scale(1.14); filter: drop-shadow(0 0 7px #f7d34e); } }
+@keyframes lexical-pulse { 50% { opacity: .42; transform: scale(.72); } }
 @keyframes wave-breathe { 50% { height: calc(var(--wave-height, 20%) + 10%); opacity: .45; } }
 
 @media (max-width: 1120px) {
@@ -1454,6 +1475,8 @@ html.reveal-enabled .game-card:not(.is-visible) {
   .section-heading { margin-bottom: 48px; }
 
   .game-grid { gap: 18px; }
+
+  .game-grid.bonus-grid { grid-template-columns: 1fr; }
 
   .game-grid > .game-card {
     grid-column: span 12;
